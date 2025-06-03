@@ -512,7 +512,7 @@ function App() {
             onClick={() => setShowSizeGuide(false)}
           >
             <motion.div
-              className="bg-white rounded-2xl p-8 max-w-md w-full max-h-[80vh] overflow-y-auto"
+              className="bg-white rounded-2xl p-8 max-w-md w-full max-h-[80vh] overflow-y-auto relative"
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
