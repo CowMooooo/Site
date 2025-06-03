@@ -522,7 +522,7 @@ function App() {
                 <h3 className="text-2xl font-bold text-black">Таблица размеров</h3>
                 <button 
                   onClick={() => setShowSizeGuide(false)}
-                  className="p-1 hover:bg-gray-100 rounded"
+                  className="p-2 hover:bg-gray-100 rounded-lg transition-colors duration-200 absolute top-4 right-4 z-10"
                 >
                   <X className="w-6 h-6" />
                 </button>
