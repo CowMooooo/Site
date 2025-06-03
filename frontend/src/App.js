@@ -115,13 +115,14 @@ function App() {
 
   const handleNewsletterSubmit = (e) => {
     e.preventDefault();
-    if (email) {
+    if (email.trim()) {
       // Here you would integrate with Telegram bot webhook
+      console.log('Submitting email:', email);
       setIsSubmitted(true);
       setTimeout(() => {
         setIsSubmitted(false);
         setEmail("");
-      }, 3000);
+      }, 5000);
     }
   };
 
