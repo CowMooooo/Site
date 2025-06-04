@@ -576,7 +576,7 @@ function App() {
               >
                 <CheckCircle className="w-12 h-12 text-green-400 mx-auto mb-4" />
                 <p className="text-white text-lg">
-                  Спасибо! Скоро пришлем ссылку на Telegram-канал
+                  Спасибо! Скоро пришлем ссылку на Telegram-канал со скидкой 500₽
                 </p>
               </motion.div>
             )}
