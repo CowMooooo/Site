@@ -132,98 +132,130 @@ function App() {
         </div>
       </header>
 
-      {/* Section 1: УТП - Apple Style */}
-      <section className="relative min-h-screen flex items-center justify-center bg-white overflow-hidden">
-        {/* Simple geometric background */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-20 left-20 w-96 h-96 bg-gray-900 rounded-full blur-3xl" />
-          <div className="absolute bottom-20 right-20 w-96 h-96 bg-gray-600 rounded-full blur-3xl" />
+      {/* Section 1: УТП - Stripe Style */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+        {/* Stripe-style animated background */}
+        <div className="absolute inset-0">
+          {/* Moving gradient orbs */}
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full opacity-20 blur-3xl animate-pulse" />
+          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full opacity-20 blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-gradient-to-r from-indigo-500 to-pink-500 rounded-full opacity-15 blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+          
+          {/* Stripe-style grid */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="w-full h-full" style={{
+              backgroundImage: `linear-gradient(rgba(139, 92, 246, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(139, 92, 246, 0.3) 1px, transparent 1px)`,
+              backgroundSize: '50px 50px'
+            }} />
+          </div>
         </div>
         
-        <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
+        <div className="relative z-10 text-center max-w-6xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            {/* Apple-style small label */}
+            {/* Stripe-style badge */}
             <motion.div 
-              className="inline-block bg-gray-100 text-gray-600 px-4 py-2 rounded-full text-sm font-medium mb-8"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500/20 to-blue-500/20 backdrop-blur-sm border border-purple-400/30 text-purple-200 px-4 py-2 rounded-full text-sm font-medium mb-8"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Кураторская коллекция
+              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+              Куратор-селекция доступна
             </motion.div>
             
-            {/* Clean, Apple-style headline */}
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-light text-gray-900 mb-6 leading-tight tracking-tight">
+            {/* Stripe-style main headline */}
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-semibold text-white mb-8 leading-tight tracking-tight">
               50 главных<br />
-              <span className="font-semibold text-black">кроссовок</span><br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 animate-pulse">
+                кроссовок
+              </span><br />
               планеты
             </h1>
             
-            {/* Subtle subtitle */}
-            <p className="text-xl md:text-2xl text-gray-600 mb-12 font-light max-w-2xl mx-auto leading-relaxed">
+            {/* Stripe-style subtitle */}
+            <p className="text-xl md:text-2xl text-slate-300 mb-12 font-normal max-w-3xl mx-auto leading-relaxed">
               Проверено. Задокументировано.<br />
-              Дальше можно не искать.
+              <span className="text-purple-300">Дальше можно не искать.</span>
             </p>
             
-            {/* Apple-style product preview */}
+            {/* Stripe-style feature highlights */}
             <motion.div
-              className="mb-12"
-              initial={{ opacity: 0, y: 50 }}
+              className="flex flex-wrap justify-center gap-6 mb-12"
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.4 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <div className="relative inline-block">
-                <img 
-                  src="https://images.unsplash.com/photo-1511556820780-d912e42b4980" 
-                  alt="Curated sneaker collection"
-                  className="w-80 md:w-96 h-64 md:h-80 object-cover rounded-3xl shadow-2xl"
-                />
-                <div className="absolute -bottom-6 -right-6 bg-white rounded-2xl p-4 shadow-lg">
-                  <div className="text-2xl font-semibold text-black mb-1">50</div>
-                  <div className="text-sm text-gray-500">моделей</div>
+              {[
+                { icon: "✓", text: "100% оригинал" },
+                { icon: "⚡", text: "10-20 дней" },
+                { icon: "🎯", text: "Без переплат" }
+              ].map((item, index) => (
+                <div key={index} className="flex items-center gap-2 bg-white/5 backdrop-blur-sm border border-white/10 px-4 py-2 rounded-xl">
+                  <span className="text-green-400">{item.icon}</span>
+                  <span className="text-white text-sm font-medium">{item.text}</span>
                 </div>
-              </div>
+              ))}
             </motion.div>
             
-            {/* Simple Apple-style buttons */}
+            {/* Stripe-style buttons */}
             <motion.div 
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+              className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              <button className="bg-black text-white px-8 py-4 rounded-xl font-medium text-lg hover:bg-gray-800 transition-all duration-300 min-w-48">
-                Открыть коллекцию
+              <button className="group relative bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-300 min-w-52 overflow-hidden">
+                <span className="relative z-10">Открыть коллекцию</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
               </button>
-              <button className="text-black border border-gray-300 px-8 py-4 rounded-xl font-medium text-lg hover:border-gray-400 hover:bg-gray-50 transition-all duration-300 min-w-48">
-                Узнать больше
+              <button className="bg-white/10 backdrop-blur-sm text-white border border-white/20 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/20 hover:border-white/30 transition-all duration-300 min-w-52">
+                Посмотреть примеры
               </button>
             </motion.div>
             
-            {/* Apple-style fine print */}
-            <motion.p 
-              className="text-sm text-gray-500 mt-8"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+            {/* Stripe-style metrics */}
+            <motion.div
+              className="grid grid-cols-3 gap-8 max-w-md mx-auto"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
             >
-              Только оригинал с POIZON. Доставка 10-20 дней.
-            </motion.p>
+              {[
+                { number: "50", label: "моделей" },
+                { number: "100%", label: "оригинал" },
+                { number: "15", label: "дней в среднем" }
+              ].map((metric, index) => (
+                <div key={index} className="text-center">
+                  <div className="text-2xl md:text-3xl font-bold text-white mb-1">{metric.number}</div>
+                  <div className="text-sm text-slate-400">{metric.label}</div>
+                </div>
+              ))}
+            </motion.div>
           </motion.div>
         </div>
         
-        {/* Apple-style scroll indicator */}
+        {/* Stripe-style floating elements */}
+        <div className="absolute top-20 left-20 w-4 h-4 bg-purple-400 rounded-full opacity-60 animate-bounce" style={{ animationDelay: '0s' }} />
+        <div className="absolute top-40 right-32 w-3 h-3 bg-cyan-400 rounded-full opacity-60 animate-bounce" style={{ animationDelay: '1s' }} />
+        <div className="absolute bottom-32 left-40 w-5 h-5 bg-pink-400 rounded-full opacity-60 animate-bounce" style={{ animationDelay: '2s' }} />
+        <div className="absolute bottom-20 right-20 w-4 h-4 bg-blue-400 rounded-full opacity-60 animate-bounce" style={{ animationDelay: '1.5s' }} />
+        
+        {/* Stripe-style scroll indicator */}
         <motion.div
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-          animate={{ y: [0, 10, 0] }}
+          animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
         >
-          <div className="w-6 h-10 border-2 border-gray-300 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-gray-400 rounded-full mt-2" />
+          <div className="w-6 h-10 border-2 border-purple-400/50 rounded-full flex justify-center backdrop-blur-sm">
+            <motion.div 
+              className="w-1 h-3 bg-purple-400 rounded-full mt-2"
+              animate={{ opacity: [1, 0.3, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            />
           </div>
         </motion.div>
       </section>
