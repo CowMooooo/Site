@@ -294,7 +294,7 @@ function App() {
 
       {/* Section 3: Catalog */}
       <section id="catalog" className="py-32 bg-gradient-to-b from-slate-900 to-black relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="40" height="40" xmlns="http://www.w3.org/2000/svg"%3E%3Cdefs%3E%3Cpattern id="dots" width="40" height="40" patternUnits="userSpaceOnUse"%3E%3Ccircle cx="20" cy="20" r="1" fill="%23374151" /%3E%3C/pattern%3E%3C/defs%3E%3Crect width="100%25" height="100%25" fill="url(%23dots)" /%3E%3C/svg%3E')] opacity-30" />
+        <div className="absolute inset-0 pattern-dots opacity-30" />
         
         <div className="max-w-7xl mx-auto px-4 relative z-10">
           <motion.div
