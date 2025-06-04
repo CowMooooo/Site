@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
-  Shield, 
-  Truck, 
+  ArrowRight, 
   Star, 
   Clock, 
-  CheckCircle, 
-  TrendingUp, 
-  ChevronLeft, 
-  ChevronRight, 
-  X,
-  Mail,
-  MessageCircle
+  Shield, 
+  Truck, 
+  Eye,
+  MessageCircle,
+  CheckCircle,
+  User,
+  Package,
+  MapPin
 } from "lucide-react";
 import "./App.css";
 
@@ -19,35 +19,45 @@ import "./App.css";
 const products = [
   {
     id: 1,
-    name: "Nike Air Force 1 OFF-WHITE",
-    price: "22,000",
-    originalPrice: "28,000",
-    image: "https://images.unsplash.com/photo-1543508282-6319a3e2621f",
-    flag: "🔥 Limited Edition"
+    name: "Nike Air Jordan 1 Retro High",
+    price: "19,500",
+    image: "https://images.unsplash.com/photo-1609011809547-fec587101c8d",
+    category: "Классика"
   },
   {
     id: 2,
-    name: "Saint Laurent Court Classic",
-    price: "18,500",
-    originalPrice: "25,000",
-    image: "https://images.unsplash.com/photo-1718802319172-76d6ce3ba4d1",
-    flag: "💰 Лучшая цена"
+    name: "Nike Air More Uptempo",
+    price: "22,000",
+    image: "https://images.unsplash.com/photo-1497149988863-70b8d8483b78",
+    category: "Эксклюзив"
   },
   {
     id: 3,
-    name: "Nike Air Jordan 1 Retro",
-    price: "19,900",
-    originalPrice: "24,000",
-    image: "https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg",
-    flag: null
+    name: "Air Jordan Collection",
+    price: "18,500",
+    image: "https://images.unsplash.com/photo-1495555961986-6d4c1ecb7be3",
+    category: "Коллекция"
   },
   {
     id: 4,
-    name: "Puma R78 Premium",
-    price: "15,000",
-    originalPrice: "19,000",
-    image: "https://images.unsplash.com/photo-1610132835946-cecdd132ee0b",
-    flag: "💰 Лучшая цена"
+    name: "Premium Nike Air Max",
+    price: "20,800",
+    image: "https://images.unsplash.com/photo-1511556670410-f6989d6b0766",
+    category: "Топ"
+  },
+  {
+    id: 5,
+    name: "Adidas Lifestyle",
+    price: "16,900",
+    image: "https://images.pexels.com/photos/684152/pexels-photo-684152.jpeg",
+    category: "Стиль"
+  },
+  {
+    id: 6,
+    name: "Sneaker Details",
+    price: "21,300",
+    image: "https://images.pexels.com/photos/8764560/pexels-photo-8764560.jpeg",
+    category: "Детали"
   }
 ];
 
@@ -55,69 +65,34 @@ const products = [
 const testimonials = [
   {
     id: 1,
-    name: "Александр К.",
+    name: "Андрей С.",
     rating: 5,
-    text: "Заказал Nike Air Force 1 - пришли точно такие же как на фото. Качество на высоте, никаких подделок!",
+    text: "Наконец-то нашел место, где не нужно гадать — оригинал или нет. Взял Jordan 1, качество идеальное, пришли за 14 дней.",
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face"
   },
   {
     id: 2,
-    name: "Мария С.",
+    name: "Мария К.",
     rating: 5,
-    text: "Долго искала оригинальные Saint Laurent по нормальной цене. В KICKORIGIN нашла за 18к вместо 25к в магазинах!",
+    text: "Устала от поисков в интернете. Здесь действительно отобрано всё лучшее. Заказала Air Max, получила именно то, что ожидала.",
     avatar: "https://images.unsplash.com/photo-1494790108755-2616b96c2a9d?w=100&h=100&fit=crop&crop=face"
   },
   {
     id: 3,
     name: "Дмитрий Л.",
     rating: 5,
-    text: "Доставка заняла 12 дней, упаковано идеально. Размер подошел точно по таблице. Буду заказывать еще!",
+    text: "Кураторский подход — это то, что я искал. Не надо листать тысячи вариантов, всё уже отобрано. Качество гарантировано.",
     avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face"
   }
 ];
 
-// Size guide data
-const sizeGuide = [
-  { us: "7", eu: "40", ru: "39" },
-  { us: "7.5", eu: "40.5", ru: "39.5" },
-  { us: "8", eu: "41", ru: "40" },
-  { us: "8.5", eu: "42", ru: "40.5" },
-  { us: "9", eu: "42.5", ru: "41" },
-  { us: "9.5", eu: "43", ru: "42" },
-  { us: "10", eu: "44", ru: "42.5" },
-  { us: "10.5", eu: "44.5", ru: "43" },
-  { us: "11", eu: "45", ru: "44" },
-  { us: "11.5", eu: "45.5", ru: "44.5" },
-  { us: "12", eu: "46", ru: "45" }
-];
-
 function App() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [showSizeGuide, setShowSizeGuide] = useState(false);
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
-
-  // Auto-scroll carousel
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % products.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % products.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + products.length) % products.length);
-  };
 
   const handleNewsletterSubmit = (e) => {
     e.preventDefault();
     if (email.trim()) {
-      // Here you would integrate with Telegram bot webhook
-      console.log('Submitting email:', email);
       setIsSubmitted(true);
       setTimeout(() => {
         setIsSubmitted(false);
@@ -126,434 +101,533 @@ function App() {
     }
   };
 
+  // Parallax effect for hero
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrolled = window.pageYOffset;
+      const parallax = document.querySelector('.parallax-bg');
+      if (parallax) {
+        parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div className="App">
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+      {/* Header */}
+      <header className="fixed top-0 left-0 right-0 z-50 glass-nav">
+        <div className="max-w-7xl mx-auto px-4 py-4">
+          <nav className="flex justify-between items-center">
+            <div className="text-2xl font-bold text-white">KICKORIGIN</div>
+            <div className="hidden md:flex space-x-8 text-white/80">
+              <a href="#catalog" className="hover:text-white transition-colors">Каталог</a>
+              <a href="#process" className="hover:text-white transition-colors">Процесс</a>
+              <a href="#reviews" className="hover:text-white transition-colors">Отзывы</a>
+              <a href="#telegram" className="hover:text-white transition-colors">Telegram</a>
+            </div>
+          </nav>
+        </div>
+      </header>
+
+      {/* Section 1: УТП */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div 
-          className="absolute inset-0 opacity-30"
+          className="parallax-bg absolute inset-0 opacity-40"
           style={{
-            backgroundImage: `url(https://images.unsplash.com/photo-1587563871167-1ee9c731aefb)`,
+            backgroundImage: `url(https://images.pexels.com/photos/2918534/pexels-photo-2918534.jpeg)`,
             backgroundSize: 'cover',
             backgroundPosition: 'center'
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/60" />
+        <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/80 via-purple-900/70 to-blue-900/80" />
         
-        <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
-          <motion.div
+        <div className="relative z-10 text-center max-w-5xl mx-auto px-4">
+          <motion.h1
+            className="text-6xl md:text-8xl lg:text-9xl font-black text-white mb-8 leading-none tracking-tight"
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+          >
+            50 главных<br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">
+              кроссовок
+            </span><br />
+            планеты
+          </motion.h1>
+          
+          <motion.p 
+            className="text-xl md:text-2xl text-white/90 mb-12 font-light max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 1, delay: 0.3 }}
           >
-            <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 tracking-tight">
-              KICK<span className="text-gray-300">ORIGIN</span>
-            </h1>
+            Проверено. Задокументировано.<br />
+            Дальше можно не искать.
+          </motion.p>
+          
+          <motion.button 
+            className="glass-button group px-12 py-6 text-xl font-semibold text-white border border-white/30 rounded-2xl hover:border-white/60 transition-all duration-500"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.6 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Открыть коллекцию
+            <ArrowRight className="inline-block ml-3 w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" />
+          </motion.button>
+        </div>
+      </section>
+
+      {/* Section 2: Targeting */}
+      <section className="py-32 bg-gradient-to-b from-slate-50 to-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="20" height="20" xmlns="http://www.w3.org/2000/svg"%3E%3Cdefs%3E%3Cpattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"%3E%3Cpath d="M 20 0 L 0 0 0 20" fill="none" stroke="%23e2e8f0" stroke-width="0.5"/%3E%3C/pattern%3E%3C/defs%3E%3Crect width="100%25" height="100%25" fill="url(%23grid)" /%3E%3C/svg%3E')] opacity-30" />
+        
+        <div className="max-w-6xl mx-auto px-4 relative z-10">
+          <motion.div
+            className="text-center mb-20"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-5xl md:text-7xl font-bold text-slate-900 mb-8 leading-tight">
+              "Да, ты из тех,<br />
+              кто <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">разбирается</span>"
+            </h2>
             
-            <motion.p 
-              className="text-xl md:text-2xl text-gray-200 mb-8 font-light leading-relaxed"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+            <p className="text-2xl md:text-3xl text-slate-600 mb-16 font-light leading-relaxed">
+              "Ты листаешь сотни предложений и знаешь: где-то здесь твоя идеальная пара. Но каждый раз один и тот же вопрос — действительно ли это оригинал? И почему такая цена?"
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <motion.div
+              className="space-y-8"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
             >
-              Только оригинал. Только тренды.<br />
-              Прямиком с POIZON.
-            </motion.p>
-            
-            <motion.div 
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              <button className="bg-white text-black px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105">
-                Смотреть коллекцию
-              </button>
-              <button 
-                onClick={() => setShowSizeGuide(true)}
-                className="border border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-black transition-all duration-300"
-              >
-                Таблица размеров
-              </button>
+              <div className="prose prose-lg text-slate-700 leading-relaxed">
+                <p className="text-xl mb-6">
+                  Ты ценишь подлинные вещи. Не потому что это модно — просто по-другому не умеешь. Фейки вызывают физический дискомфорт, а переплачивать за чужой маркетинг — против твоих принципов.
+                </p>
+                
+                <p className="text-xl mb-8">
+                  Ты знаешь, чего хочешь. Но когда открываешь очередной маркетплейс... Сотни моделей. Тысячи продавцов. Миллион вопросов без ответов. И каждый раз следопытом — проверять, перепроверять, сомневаться.
+                </p>
+
+                <div className="bg-white/70 backdrop-blur-lg p-8 rounded-3xl border border-white/30 shadow-lg">
+                  <p className="text-lg font-medium text-slate-800 mb-4">Знакомо, когда:</p>
+                  <ul className="space-y-3 text-slate-700">
+                    <li className="flex items-start gap-3">
+                      <div className="w-2 h-2 bg-violet-500 rounded-full mt-3 flex-shrink-0" />
+                      Нашел идеальную модель, но сомневаешься в подлинности
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <div className="w-2 h-2 bg-violet-500 rounded-full mt-3 flex-shrink-0" />
+                      Видишь явно завышенную цену и понимаешь, что платишь за чужую рекламу
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <div className="w-2 h-2 bg-violet-500 rounded-full mt-3 flex-shrink-0" />
+                      Открываешь каталог и через 15 минут закрываешь — глаза разбегаются
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <div className="w-2 h-2 bg-violet-500 rounded-full mt-3 flex-shrink-0" />
+                      Чувствуешь себя одиноким в этом бесконечном поиске
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </motion.div>
+
+            <motion.div
+              className="relative"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <div className="relative">
+                <img 
+                  src="https://images.pexels.com/photos/2364589/pexels-photo-2364589.jpeg" 
+                  alt="Sneaker enthusiast"
+                  className="w-full h-96 object-cover rounded-3xl shadow-2xl"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-violet-900/30 to-transparent rounded-3xl" />
+              </div>
+            </motion.div>
+          </div>
+
+          <motion.div
+            className="mt-20 text-center"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <div className="bg-gradient-to-r from-violet-600 to-indigo-600 p-12 rounded-3xl text-white">
+              <h3 className="text-3xl md:text-4xl font-bold mb-6">
+                И вот здесь, в момент выбора, мы делаем всё по-другому.
+              </h3>
+              
+              <p className="text-xl mb-8 opacity-90 leading-relaxed">
+                Хватит мучиться от бесконечного выбора. Мы отбираем только те модели, которые действительно стоит носить. Никаких лишних вариантов, только кураторский подход, который делает твой выбор лёгким и уверенным.
+              </p>
+              
+              <p className="text-lg mb-10 opacity-80">
+                Мы такие же, как ты. Мы создали то, чего сами не могли найти — место, где не нужно выбирать между оригинальностью и разумной ценой. Где каждая модель прошла отбор, и ты точно знаешь, за что платишь.
+              </p>
+              
+              <button className="bg-white text-violet-600 px-10 py-4 rounded-2xl font-semibold text-lg hover:bg-gray-50 transition-colors duration-300 group">
+                Показать коллекцию
+                <ArrowRight className="inline-block ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+              </button>
+            </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Featured Products Carousel */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">
-              Curated Collection
+      {/* Section 3: Catalog */}
+      <section id="catalog" className="py-32 bg-gradient-to-b from-slate-900 to-black relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="40" height="40" xmlns="http://www.w3.org/2000/svg"%3E%3Cdefs%3E%3Cpattern id="dots" width="40" height="40" patternUnits="userSpaceOnUse"%3E%3Ccircle cx="20" cy="20" r="1" fill="%23374151" /%3E%3C/pattern%3E%3C/defs%3E%3Crect width="100%25" height="100%25" fill="url(%23dots)" /%3E%3C/svg%3E')] opacity-30" />
+        
+        <div className="max-w-7xl mx-auto px-4 relative z-10">
+          <motion.div
+            className="text-center mb-20"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-6xl md:text-8xl font-black text-white mb-8 leading-none">
+              Каталог
             </h2>
-            <p className="text-xl text-gray-600">
-              Отобранные вручную топ-модели из POIZON
+            <p className="text-2xl md:text-3xl text-gray-400 font-light">
+              50 моделей. Точка.
             </p>
-          </div>
-
-          <div className="relative">
-            <div className="overflow-hidden rounded-2xl">
-              <motion.div 
-                className="flex transition-transform duration-500 ease-out"
-                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-              >
-                {products.map((product) => (
-                  <div key={product.id} className="w-full flex-shrink-0">
-                    <div className="bg-white rounded-2xl p-8 mx-4 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                      <div className="relative">
-                        <img 
-                          src={product.image} 
-                          alt={product.name}
-                          className="w-full h-80 object-cover rounded-xl mb-6"
-                        />
-                        {product.flag && (
-                          <div className="absolute top-4 left-4 bg-black text-white px-3 py-1 rounded-full text-sm font-medium">
-                            {product.flag}
-                          </div>
-                        )}
-                      </div>
-                      
-                      <h3 className="text-2xl font-bold text-black mb-2">{product.name}</h3>
-                      <div className="flex items-center gap-4 mb-6">
-                        <span className="text-3xl font-bold text-black">{product.price} ₽</span>
-                        <span className="text-xl text-gray-500 line-through">{product.originalPrice} ₽</span>
-                      </div>
-                      
-                      <button className="w-full bg-black text-white py-4 rounded-xl font-semibold text-lg hover:bg-gray-800 transition-colors duration-300">
-                        Заказать
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </motion.div>
-            </div>
-
-            {/* Carousel controls */}
-            <button 
-              onClick={prevSlide}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg transition-all duration-300"
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
-            <button 
-              onClick={nextSlide}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg transition-all duration-300"
-            >
-              <ChevronRight className="w-6 h-6" />
-            </button>
-
-            {/* Carousel indicators */}
-            <div className="flex justify-center mt-8 gap-2">
-              {products.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-colors duration-300 ${
-                    index === currentSlide ? 'bg-black' : 'bg-gray-300'
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Why Choose KICKORIGIN */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">
-              Почему KICKORIGIN?
-            </h2>
-            <p className="text-xl text-gray-600">
-              Гарантии качества и честные условия
+            <p className="text-xl text-gray-500 mt-4 max-w-2xl mx-auto">
+              50 моделей, после которых можно удалить закладки. Всё, что искал — уже здесь.
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                icon: <Shield className="w-8 h-8" />,
-                title: "100% оригинал",
-                subtitle: "Прямо с POIZON",
-                description: "Каждая пара проходит проверку на подлинность в Китае"
-              },
-              {
-                icon: <Truck className="w-8 h-8" />,
-                title: "Доставка 10-20 дней",
-                subtitle: "Быстро и надежно",
-                description: "Отслеживание посылки на каждом этапе доставки"
-              },
-              {
-                icon: <TrendingUp className="w-8 h-8" />,
-                title: "Цены ниже российских",
-                subtitle: "Без переплат",
-                description: "Экономия до 30% по сравнению с местными магазинами"
-              },
-              {
-                icon: <Star className="w-8 h-8" />,
-                title: "Curated отбор",
-                subtitle: "Только тренды",
-                description: "Вручную отобранные топ-50 моделей сезона"
-              },
-              {
-                icon: <CheckCircle className="w-8 h-8" />,
-                title: "Гарантия подлинности",
-                subtitle: "Наша репутация",
-                description: "Возврат денег, если товар окажется не оригинальным"
-              },
-              {
-                icon: <Clock className="w-8 h-8" />,
-                title: "Проверка в Китае",
-                subtitle: "Контроль качества",
-                description: "Тщательная упаковка и проверка перед отправкой"
-              }
-            ].map((feature, index) => (
+            {products.map((product, index) => (
               <motion.div
-                key={index}
-                className="text-center p-8 rounded-2xl hover:bg-gray-50 transition-colors duration-300"
-                initial={{ opacity: 0, y: 30 }}
+                key={product.id}
+                className="group relative overflow-hidden rounded-3xl"
+                initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
                 viewport={{ once: true }}
+                whileHover={{ y: -10 }}
               >
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-black text-white rounded-2xl mb-6">
-                  {feature.icon}
+                <div className="glass-card h-full">
+                  <div className="relative overflow-hidden rounded-2xl">
+                    <img 
+                      src={product.image} 
+                      alt={product.name}
+                      className="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute top-4 left-4">
+                      <span className="bg-gradient-to-r from-violet-500 to-purple-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                        {product.category}
+                      </span>
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  </div>
+                  
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-white mb-2">{product.name}</h3>
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-400">
+                        {product.price} ₽
+                      </span>
+                    </div>
+                    
+                    <button className="w-full bg-gradient-to-r from-violet-600 to-indigo-600 text-white py-3 rounded-xl font-semibold hover:from-violet-700 hover:to-indigo-700 transition-all duration-300 group-hover:scale-105">
+                      Заказать
+                    </button>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold text-black mb-2">{feature.title}</h3>
-                <p className="text-sm font-semibold text-gray-500 mb-3">{feature.subtitle}</p>
-                <p className="text-gray-600">{feature.description}</p>
               </motion.div>
             ))}
           </div>
+
+          <motion.div
+            className="text-center mt-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <button className="glass-button px-12 py-4 text-xl font-semibold text-white border border-white/30 rounded-2xl hover:border-white/60 transition-all duration-500">
+              Показать все 50 моделей
+            </button>
+          </motion.div>
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section 
-        className="py-20 relative"
-        style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url(https://images.pexels.com/photos/9195765/pexels-photo-9195765.jpeg)`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
-        }}
-      >
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Отзывы клиентов
+      {/* Section 4: Process */}
+      <section id="process" className="py-32 bg-gradient-to-b from-white to-slate-50">
+        <div className="max-w-6xl mx-auto px-4">
+          <motion.div
+            className="text-center mb-20"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-5xl md:text-7xl font-bold text-slate-900 mb-8 leading-tight">
+              Твой путь к<br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">
+                оригинальным кроссовкам
+              </span>
             </h2>
-            <p className="text-xl text-gray-300">
-              Что говорят наши покупатели
-            </p>
+          </motion.div>
+
+          <div className="space-y-16">
+            {[
+              {
+                number: "1",
+                title: "Подлинность гарантирована",
+                description: "Каждая пара проходит многоуровневую проверку на POIZON — площадке, где подделки невозможны в принципе. Никаких \"почти оригиналов\" и \"точных копий\".",
+                icon: <Shield className="w-8 h-8" />,
+                image: "https://images.unsplash.com/photo-1511556820780-d912e42b4980"
+              },
+              {
+                number: "2",
+                title: "Быстрая доставка из Азии",
+                description: "После оплаты твой заказ отправляется в течение 24 часов. Без задержек и непонятных статусов.",
+                icon: <Clock className="w-8 h-8" />,
+                image: "https://images.unsplash.com/photo-1567535969438-dffc001e5804"
+              },
+              {
+                number: "3",
+                title: "10-20 дней в пути",
+                description: "Чёткие сроки без пустых обещаний. Ты всегда знаешь, когда получишь свои кроссовки.",
+                icon: <Truck className="w-8 h-8" />,
+                image: "https://images.pexels.com/photos/8764560/pexels-photo-8764560.jpeg"
+              },
+              {
+                number: "4",
+                title: "Отслеживание каждого шага",
+                description: "Полный контроль над доставкой в режиме реального времени. От склада в Азии до твоего города — видишь каждое перемещение заказа.",
+                icon: <Eye className="w-8 h-8" />,
+                image: "https://images.pexels.com/photos/684152/pexels-photo-684152.jpeg"
+              },
+              {
+                number: "5",
+                title: "Получение в СДЭК",
+                description: "Забери свой заказ в ближайшем отделении СДЭК. Более 3000 пунктов выдачи по всей России.",
+                icon: <MapPin className="w-8 h-8" />,
+                image: "https://images.unsplash.com/photo-1495555961986-6d4c1ecb7be3"
+              }
+            ].map((step, index) => (
+              <motion.div
+                key={index}
+                className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12`}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <div className="flex-1">
+                  <div className="flex items-center gap-6 mb-6">
+                    <div className="w-16 h-16 bg-gradient-to-r from-violet-600 to-indigo-600 rounded-2xl flex items-center justify-center text-white font-bold text-2xl">
+                      {step.number}
+                    </div>
+                    <div className="w-12 h-12 bg-violet-100 rounded-xl flex items-center justify-center text-violet-600">
+                      {step.icon}
+                    </div>
+                  </div>
+                  
+                  <h3 className="text-3xl font-bold text-slate-900 mb-4">{step.title}</h3>
+                  <p className="text-xl text-slate-600 leading-relaxed">{step.description}</p>
+                </div>
+                
+                <div className="flex-1">
+                  <div className="relative">
+                    <img 
+                      src={step.image} 
+                      alt={step.title}
+                      className="w-full h-80 object-cover rounded-3xl shadow-2xl"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-violet-900/20 to-transparent rounded-3xl" />
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
+
+          <motion.div
+            className="text-center mt-20"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <button className="bg-gradient-to-r from-violet-600 to-indigo-600 text-white px-12 py-4 rounded-2xl font-semibold text-xl hover:from-violet-700 hover:to-indigo-700 transition-all duration-300 group">
+              Выбрать кроссовки
+              <ArrowRight className="inline-block ml-3 w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
+            </button>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Section 5: Reviews */}
+      <section id="reviews" className="py-32 bg-gradient-to-b from-slate-900 to-black">
+        <div className="max-w-7xl mx-auto px-4">
+          <motion.div
+            className="text-center mb-20"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-6xl md:text-8xl font-black text-white mb-8 leading-none">
+              Отзывы
+            </h2>
+            <p className="text-2xl text-gray-400 font-light">
+              Что говорят покупатели
+            </p>
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
               <motion.div
                 key={testimonial.id}
-                className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20"
-                initial={{ opacity: 0, y: 30 }}
+                className="glass-card p-8"
+                initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
+                transition={{ duration: 0.8, delay: index * 0.2 }}
                 viewport={{ once: true }}
+                whileHover={{ y: -10 }}
               >
-                <div className="flex items-center mb-4">
+                <div className="flex items-center mb-6">
                   <img 
                     src={testimonial.avatar} 
                     alt={testimonial.name}
-                    className="w-12 h-12 rounded-full mr-4"
+                    className="w-16 h-16 rounded-full mr-4 border-2 border-violet-500"
                   />
                   <div>
-                    <h4 className="font-semibold text-white">{testimonial.name}</h4>
-                    <div className="flex text-yellow-400">
+                    <h4 className="font-bold text-white text-lg">{testimonial.name}</h4>
+                    <div className="flex text-yellow-400 mt-1">
                       {[...Array(testimonial.rating)].map((_, i) => (
                         <Star key={i} className="w-4 h-4 fill-current" />
                       ))}
                     </div>
                   </div>
                 </div>
-                <p className="text-gray-300 leading-relaxed">{testimonial.text}</p>
+                <p className="text-gray-300 leading-relaxed text-lg">{testimonial.text}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Newsletter Signup */}
-      <section className="py-20 bg-gray-900">
-        <div className="max-w-4xl mx-auto px-4 text-center">
+      {/* Section 6: Telegram */}
+      <section id="telegram" className="py-32 bg-gradient-to-b from-violet-900 to-indigo-900 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" xmlns="http://www.w3.org/2000/svg"%3E%3Cdefs%3E%3Cpattern id="hexagon" width="60" height="60" patternUnits="userSpaceOnUse"%3E%3Cpath d="M30 10 L45 20 L45 40 L30 50 L15 40 L15 20 Z" fill="none" stroke="%23a855f7" stroke-width="0.5" opacity="0.3"/%3E%3C/pattern%3E%3C/defs%3E%3Crect width="100%25" height="100%25" fill="url(%23hexagon)" /%3E%3C/svg%3E')] opacity-20" />
+        
+        <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Узнавай о новых дропах первым
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-white/10 backdrop-blur-lg rounded-3xl mb-8">
+              <MessageCircle className="w-10 h-10 text-white" />
+            </div>
+            
+            <h2 className="text-6xl md:text-8xl font-black text-white mb-8 leading-none">
+              Telegram
             </h2>
-            <p className="text-xl text-gray-400 mb-8">
-              Уведомления в Telegram без спама — только новые дропы
+            <p className="text-2xl md:text-3xl text-white/90 mb-12 font-light">
+              500₽ за подписку. Пишем про сникер-культуру
             </p>
 
             {!isSubmitted ? (
-              <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Ваш email"
-                  className="flex-1 px-6 py-4 rounded-lg text-black text-lg focus:outline-none focus:ring-2 focus:ring-white"
-                  required
-                />
-                <button 
-                  type="submit"
-                  className="bg-white text-black px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors duration-300 flex items-center justify-center gap-2"
-                >
-                  <MessageCircle className="w-5 h-5" />
-                  Подписаться
-                </button>
+              <form onSubmit={handleNewsletterSubmit} className="max-w-md mx-auto">
+                <div className="glass-card p-8">
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Ваш email для доступа"
+                    className="w-full px-6 py-4 bg-white/10 backdrop-blur-lg border border-white/30 rounded-xl text-white placeholder-white/60 text-lg focus:outline-none focus:border-white/60 mb-6"
+                    required
+                  />
+                  <button 
+                    type="submit"
+                    className="w-full bg-white text-violet-600 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-100 transition-colors duration-300"
+                  >
+                    Подписаться за 500₽
+                  </button>
+                </div>
               </form>
             ) : (
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="bg-green-600 text-white px-8 py-4 rounded-lg inline-flex items-center gap-2"
+                className="glass-card p-8 max-w-md mx-auto"
               >
-                <CheckCircle className="w-5 h-5" />
-                Спасибо! Скоро пришлем ссылку на Telegram-бот
+                <CheckCircle className="w-12 h-12 text-green-400 mx-auto mb-4" />
+                <p className="text-white text-lg">
+                  Спасибо! Скоро пришлем ссылку на Telegram-канал
+                </p>
               </motion.div>
             )}
           </motion.div>
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">
-              Часто задаваемые вопросы
-            </h2>
-          </div>
-
-          <div className="space-y-4">
-            {[
-              {
-                question: "Как долго доставка?",
-                answer: "Доставка занимает 10-20 дней. Все посылки отслеживаются, вы будете получать уведомления о статусе доставки."
-              },
-              {
-                question: "Это точно оригинал?",
-                answer: "Да, мы работаем только с проверенными поставщиками на POIZON. Каждая пара проходит проверку на подлинность перед отправкой."
-              },
-              {
-                question: "Что делать, если размер не подошел?",
-                answer: "К сожалению, возврат невозможен из-за особенностей дропшиппинга. Поэтому внимательно изучите таблицу размеров перед заказом. Мы всегда готовы помочь с выбором размера."
-              },
-              {
-                question: "Какие способы оплаты?",
-                answer: "Принимаем оплату картой, переводом на карту и через электронные кошельки. Оплата производится после подтверждения заказа."
-              },
-              {
-                question: "Есть ли гарантия?",
-                answer: "Мы гарантируем подлинность товара. Если товар окажется не оригинальным, вернем деньги полностью."
-              }
-            ].map((faq, index) => (
-              <motion.details
-                key={index}
-                className="bg-gray-50 rounded-lg p-6 group"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <summary className="font-semibold text-lg text-black cursor-pointer list-none flex justify-between items-center">
-                  {faq.question}
-                  <ChevronRight className="w-5 h-5 transform group-open:rotate-90 transition-transform duration-200" />
-                </summary>
-                <p className="mt-4 text-gray-600 leading-relaxed">{faq.answer}</p>
-              </motion.details>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Footer */}
-      <footer className="bg-black text-white py-16">
+      <footer className="bg-black text-white py-16 border-t border-gray-800">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center">
-            <h3 className="text-3xl font-bold mb-4">KICKORIGIN</h3>
-            <p className="text-gray-400 mb-8">
-              Оригинальные кроссовки с POIZON. Без переплат. Без фейков.
-            </p>
-            
-            <div className="flex justify-center space-x-8 text-sm text-gray-400">
-              <a href="#" className="hover:text-white transition-colors">Политика конфиденциальности</a>
-              <a href="#" className="hover:text-white transition-colors">Условия использования</a>
-              <a href="#" className="hover:text-white transition-colors">Контакты</a>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="col-span-2">
+              <h3 className="text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-indigo-400">
+                KICKORIGIN
+              </h3>
+              <p className="text-gray-400 mb-6 text-lg leading-relaxed">
+                50 главных кроссовок планеты.<br />
+                Проверено. Задокументировано.<br />
+                Дальше можно не искать.
+              </p>
             </div>
             
-            <p className="text-gray-500 text-sm mt-8">
+            <div>
+              <h4 className="font-semibold mb-4 text-lg">Информация</h4>
+              <div className="space-y-2">
+                <a href="#" className="block text-gray-400 hover:text-white transition-colors">О проекте</a>
+                <a href="#" className="block text-gray-400 hover:text-white transition-colors">Доставка</a>
+                <a href="#" className="block text-gray-400 hover:text-white transition-colors">Гарантии</a>
+              </div>
+            </div>
+            
+            <div>
+              <h4 className="font-semibold mb-4 text-lg">Контакты</h4>
+              <div className="space-y-2">
+                <a href="#" className="block text-gray-400 hover:text-white transition-colors">Telegram</a>
+                <a href="#" className="block text-gray-400 hover:text-white transition-colors">Email</a>
+                <a href="#" className="block text-gray-400 hover:text-white transition-colors">FAQ</a>
+              </div>
+            </div>
+          </div>
+          
+          <div className="border-t border-gray-800 mt-12 pt-8 text-center">
+            <p className="text-gray-500">
               © 2024 KICKORIGIN. Все права защищены.
             </p>
           </div>
         </div>
       </footer>
-
-      {/* Size Guide Modal */}
-      <AnimatePresence>
-        {showSizeGuide && (
-          <motion.div
-            className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setShowSizeGuide(false)}
-          >
-            <motion.div
-              className="bg-white rounded-2xl p-8 max-w-md w-full max-h-[80vh] overflow-y-auto relative"
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="flex justify-between items-center mb-6">
-                <h3 className="text-2xl font-bold text-black">Таблица размеров</h3>
-                <button 
-                  onClick={() => setShowSizeGuide(false)}
-                  className="p-2 hover:bg-gray-100 rounded-lg transition-colors duration-200 absolute top-4 right-4 z-10"
-                >
-                  <X className="w-6 h-6" />
-                </button>
-              </div>
-
-              <div className="space-y-4">
-                <div className="grid grid-cols-3 gap-4 font-semibold text-sm text-gray-600 border-b pb-2">
-                  <div>US</div>
-                  <div>EU</div>
-                  <div>RU</div>
-                </div>
-                {sizeGuide.map((size, index) => (
-                  <div key={index} className="grid grid-cols-3 gap-4 py-2 hover:bg-gray-50 rounded">
-                    <div className="font-medium">{size.us}</div>
-                    <div>{size.eu}</div>
-                    <div>{size.ru}</div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-                <p className="text-sm text-gray-600">
-                  <strong>Совет:</strong> Если сомневаетесь между размерами, выбирайте больший. 
-                  Помните, что возврат невозможен.
-                </p>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   );
 }
