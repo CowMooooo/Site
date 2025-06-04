@@ -556,7 +556,7 @@ function App() {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Ваш email для доступа"
+                    placeholder="Ваш email для получения скидки"
                     className="w-full px-6 py-4 bg-white/10 backdrop-blur-lg border border-white/30 rounded-xl text-white placeholder-white/60 text-lg focus:outline-none focus:border-white/60 mb-6"
                     required
                   />
@@ -564,7 +564,7 @@ function App() {
                     type="submit"
                     className="w-full bg-white text-violet-600 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-100 transition-colors duration-300"
                   >
-                    Подписаться за 500₽
+                    Получить скидку 500₽
                   </button>
                 </div>
               </form>
