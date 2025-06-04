@@ -308,10 +308,7 @@ function App() {
               Каталог
             </h2>
             <p className="text-2xl md:text-3xl text-gray-400 font-light">
-              50 моделей. Точка.
-            </p>
-            <p className="text-xl text-gray-500 mt-4 max-w-2xl mx-auto">
-              50 моделей, после которых можно удалить закладки. Всё, что искал — уже здесь.
+              50 моделей. Всё здесь.
             </p>
           </motion.div>
 
