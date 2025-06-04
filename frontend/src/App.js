@@ -132,130 +132,180 @@ function App() {
         </div>
       </header>
 
-      {/* Section 1: УТП - Stripe Style */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-        {/* Stripe-style animated background */}
+      {/* Section 1: УТП - New Balance Style */}
+      <section className="relative min-h-screen flex items-center bg-white overflow-hidden">
+        {/* New Balance style background pattern */}
         <div className="absolute inset-0">
-          {/* Moving gradient orbs */}
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full opacity-20 blur-3xl animate-pulse" />
-          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full opacity-20 blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-gradient-to-r from-indigo-500 to-pink-500 rounded-full opacity-15 blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
-          
-          {/* Stripe-style grid */}
-          <div className="absolute inset-0 opacity-10">
+          {/* Athletic grid pattern */}
+          <div className="absolute inset-0 opacity-5">
             <div className="w-full h-full" style={{
-              backgroundImage: `linear-gradient(rgba(139, 92, 246, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(139, 92, 246, 0.3) 1px, transparent 1px)`,
-              backgroundSize: '50px 50px'
+              backgroundImage: `linear-gradient(45deg, #000 25%, transparent 25%), linear-gradient(-45deg, #000 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #000 75%), linear-gradient(-45deg, transparent 75%, #000 75%)`,
+              backgroundSize: '20px 20px'
             }} />
+          </div>
+          
+          {/* Dynamic accent elements */}
+          <div className="absolute top-20 right-20 w-32 h-32 bg-red-500 opacity-10 rounded-full" />
+          <div className="absolute bottom-32 left-20 w-24 h-24 bg-blue-500 opacity-10 rounded-full" />
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 w-full">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            
+            {/* Left side - Content */}
+            <motion.div
+              className="space-y-8"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              {/* New Balance style badge */}
+              <motion.div 
+                className="inline-flex items-center gap-2 bg-black text-white px-4 py-2 rounded-sm text-sm font-bold uppercase tracking-wider"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <div className="w-2 h-2 bg-red-500 rounded-full" />
+                Curated Selection
+              </motion.div>
+              
+              {/* Athletic-inspired headline */}
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-black leading-tight tracking-tight">
+                50 ГЛАВНЫХ<br />
+                <span className="text-red-500">КРОССОВОК</span><br />
+                ПЛАНЕТЫ
+              </h1>
+              
+              {/* Performance-focused subtitle */}
+              <p className="text-lg md:text-xl text-gray-700 font-medium leading-relaxed max-w-lg">
+                Проверено профессионалами.<br />
+                Задокументировано экспертами.<br />
+                <span className="text-black font-bold">Дальше можно не искать.</span>
+              </p>
+              
+              {/* New Balance style performance metrics */}
+              <div className="grid grid-cols-3 gap-6 py-6">
+                {[
+                  { metric: "100%", label: "AUTHENTIC", color: "text-green-600" },
+                  { metric: "10-20", label: "DAYS", color: "text-blue-600" },
+                  { metric: "50", label: "MODELS", color: "text-red-500" }
+                ].map((item, index) => (
+                  <motion.div
+                    key={index}
+                    className="text-center"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
+                  >
+                    <div className={`text-2xl md:text-3xl font-black ${item.color}`}>
+                      {item.metric}
+                    </div>
+                    <div className="text-sm font-bold text-gray-600 uppercase tracking-wider">
+                      {item.label}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+              
+              {/* Athletic-style buttons */}
+              <motion.div 
+                className="flex flex-col sm:flex-row gap-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+              >
+                <button className="bg-black text-white px-8 py-4 rounded-sm font-bold text-lg uppercase tracking-wider hover:bg-gray-800 transition-colors duration-300 border-2 border-black">
+                  Shop Collection
+                </button>
+                <button className="bg-white text-black border-2 border-black px-8 py-4 rounded-sm font-bold text-lg uppercase tracking-wider hover:bg-black hover:text-white transition-all duration-300">
+                  Learn More
+                </button>
+              </motion.div>
+              
+              {/* Performance features */}
+              <motion.div
+                className="flex flex-wrap gap-4 pt-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
+              >
+                {[
+                  { icon: "🏃‍♂️", text: "Performance Tested" },
+                  { icon: "🔒", text: "Authenticity Guaranteed" },
+                  { icon: "⚡", text: "Fast Delivery" }
+                ].map((feature, index) => (
+                  <div key={index} className="flex items-center gap-2 bg-gray-100 px-3 py-2 rounded-sm">
+                    <span className="text-lg">{feature.icon}</span>
+                    <span className="text-sm font-semibold text-gray-700 uppercase">{feature.text}</span>
+                  </div>
+                ))}
+              </motion.div>
+            </motion.div>
+            
+            {/* Right side - Product showcase */}
+            <motion.div
+              className="relative"
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              <div className="relative">
+                {/* Main product image */}
+                <div className="relative bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg p-8 shadow-2xl">
+                  <img 
+                    src="https://images.unsplash.com/photo-1511556820780-d912e42b4980" 
+                    alt="Premium sneaker collection"
+                    className="w-full h-96 object-cover rounded-lg"
+                  />
+                  
+                  {/* Athletic performance badge */}
+                  <div className="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-sm text-sm font-bold uppercase">
+                    PREMIUM
+                  </div>
+                  
+                  {/* Price badge */}
+                  <div className="absolute bottom-4 right-4 bg-black text-white px-4 py-2 rounded-sm">
+                    <div className="text-sm font-bold uppercase">From</div>
+                    <div className="text-xl font-black">15,000₽</div>
+                  </div>
+                </div>
+                
+                {/* Floating elements */}
+                <div className="absolute -top-6 -right-6 w-12 h-12 bg-blue-500 rounded-sm rotate-12 shadow-lg" />
+                <div className="absolute -bottom-6 -left-6 w-16 h-16 bg-red-500 rounded-sm rotate-45 shadow-lg opacity-80" />
+                
+                {/* Athletic stats overlay */}
+                <motion.div
+                  className="absolute top-1/2 -left-8 bg-white shadow-xl rounded-sm p-4 border-l-4 border-green-500"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: 1 }}
+                >
+                  <div className="text-2xl font-black text-green-500">✓</div>
+                  <div className="text-xs font-bold text-gray-600 uppercase">Verified</div>
+                  <div className="text-xs text-gray-500">POIZON Auth</div>
+                </motion.div>
+              </div>
+            </motion.div>
           </div>
         </div>
         
-        <div className="relative z-10 text-center max-w-6xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            {/* Stripe-style badge */}
-            <motion.div 
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500/20 to-blue-500/20 backdrop-blur-sm border border-purple-400/30 text-purple-200 px-4 py-2 rounded-full text-sm font-medium mb-8"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-              Куратор-селекция доступна
-            </motion.div>
-            
-            {/* Stripe-style main headline */}
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-semibold text-white mb-8 leading-tight tracking-tight">
-              50 главных<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 animate-pulse">
-                кроссовок
-              </span><br />
-              планеты
-            </h1>
-            
-            {/* Stripe-style subtitle */}
-            <p className="text-xl md:text-2xl text-slate-300 mb-12 font-normal max-w-3xl mx-auto leading-relaxed">
-              Проверено. Задокументировано.<br />
-              <span className="text-purple-300">Дальше можно не искать.</span>
-            </p>
-            
-            {/* Stripe-style feature highlights */}
-            <motion.div
-              className="flex flex-wrap justify-center gap-6 mb-12"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              {[
-                { icon: "✓", text: "100% оригинал" },
-                { icon: "⚡", text: "10-20 дней" },
-                { icon: "🎯", text: "Без переплат" }
-              ].map((item, index) => (
-                <div key={index} className="flex items-center gap-2 bg-white/5 backdrop-blur-sm border border-white/10 px-4 py-2 rounded-xl">
-                  <span className="text-green-400">{item.icon}</span>
-                  <span className="text-white text-sm font-medium">{item.text}</span>
-                </div>
-              ))}
-            </motion.div>
-            
-            {/* Stripe-style buttons */}
-            <motion.div 
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              <button className="group relative bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-300 min-w-52 overflow-hidden">
-                <span className="relative z-10">Открыть коллекцию</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
-              </button>
-              <button className="bg-white/10 backdrop-blur-sm text-white border border-white/20 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/20 hover:border-white/30 transition-all duration-300 min-w-52">
-                Посмотреть примеры
-              </button>
-            </motion.div>
-            
-            {/* Stripe-style metrics */}
-            <motion.div
-              className="grid grid-cols-3 gap-8 max-w-md mx-auto"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-            >
-              {[
-                { number: "50", label: "моделей" },
-                { number: "100%", label: "оригинал" },
-                { number: "15", label: "дней в среднем" }
-              ].map((metric, index) => (
-                <div key={index} className="text-center">
-                  <div className="text-2xl md:text-3xl font-bold text-white mb-1">{metric.number}</div>
-                  <div className="text-sm text-slate-400">{metric.label}</div>
-                </div>
-              ))}
-            </motion.div>
-          </motion.div>
-        </div>
-        
-        {/* Stripe-style floating elements */}
-        <div className="absolute top-20 left-20 w-4 h-4 bg-purple-400 rounded-full opacity-60 animate-bounce" style={{ animationDelay: '0s' }} />
-        <div className="absolute top-40 right-32 w-3 h-3 bg-cyan-400 rounded-full opacity-60 animate-bounce" style={{ animationDelay: '1s' }} />
-        <div className="absolute bottom-32 left-40 w-5 h-5 bg-pink-400 rounded-full opacity-60 animate-bounce" style={{ animationDelay: '2s' }} />
-        <div className="absolute bottom-20 right-20 w-4 h-4 bg-blue-400 rounded-full opacity-60 animate-bounce" style={{ animationDelay: '1.5s' }} />
-        
-        {/* Stripe-style scroll indicator */}
+        {/* Athletic-style scroll indicator */}
         <motion.div
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-          animate={{ y: [0, 8, 0] }}
+          animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
         >
-          <div className="w-6 h-10 border-2 border-purple-400/50 rounded-full flex justify-center backdrop-blur-sm">
-            <motion.div 
-              className="w-1 h-3 bg-purple-400 rounded-full mt-2"
-              animate={{ opacity: [1, 0.3, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            />
+          <div className="flex flex-col items-center gap-2">
+            <div className="w-6 h-10 border-2 border-black rounded-sm flex justify-center">
+              <motion.div 
+                className="w-1 h-3 bg-red-500 rounded-sm mt-2"
+                animate={{ y: [0, 8, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
+            </div>
+            <div className="text-xs font-bold text-gray-600 uppercase tracking-wider">Scroll</div>
           </div>
         </motion.div>
       </section>
