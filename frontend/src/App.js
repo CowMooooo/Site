@@ -137,7 +137,7 @@ function App() {
         <div 
           className="parallax-bg absolute inset-0 opacity-40"
           style={{
-            backgroundImage: `url(https://images.pexels.com/photos/2918534/pexels-photo-2918534.jpeg)`,
+            backgroundImage: `url(https://images.unsplash.com/photo-1511556820780-d912e42b4980)`,
             backgroundSize: 'cover',
             backgroundPosition: 'center'
           }}
