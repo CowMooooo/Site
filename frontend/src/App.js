@@ -532,7 +532,7 @@ function App() {
 
       {/* Section 6: Telegram */}
       <section id="telegram" className="py-32 bg-gradient-to-b from-violet-900 to-indigo-900 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" xmlns="http://www.w3.org/2000/svg"%3E%3Cdefs%3E%3Cpattern id="hexagon" width="60" height="60" patternUnits="userSpaceOnUse"%3E%3Cpath d="M30 10 L45 20 L45 40 L30 50 L15 40 L15 20 Z" fill="none" stroke="%23a855f7" stroke-width="0.5" opacity="0.3"/%3E%3C/pattern%3E%3C/defs%3E%3Crect width="100%25" height="100%25" fill="url(%23hexagon)" /%3E%3C/svg%3E')] opacity-20" />
+        <div className="absolute inset-0 pattern-hexagon opacity-20" />
         
         <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
           <motion.div
