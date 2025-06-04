@@ -546,7 +546,7 @@ function App() {
               Telegram
             </h2>
             <p className="text-2xl md:text-3xl text-white/90 mb-12 font-light">
-              500₽ за подписку. Пишем про сникер-культуру
+              Скидка 500₽ за подписку. Пишем про сникер-культуру
             </p>
 
             {!isSubmitted ? (
