@@ -132,54 +132,100 @@ function App() {
         </div>
       </header>
 
-      {/* Section 1: УТП */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div 
-          className="parallax-bg absolute inset-0 opacity-40"
-          style={{
-            backgroundImage: `url(https://images.unsplash.com/photo-1511556820780-d912e42b4980)`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center'
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/80 via-purple-900/70 to-blue-900/80" />
+      {/* Section 1: УТП - Apple Style */}
+      <section className="relative min-h-screen flex items-center justify-center bg-white overflow-hidden">
+        {/* Simple geometric background */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-20 left-20 w-96 h-96 bg-gray-900 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 right-20 w-96 h-96 bg-gray-600 rounded-full blur-3xl" />
+        </div>
         
-        <div className="relative z-10 text-center max-w-5xl mx-auto px-4">
-          <motion.h1
-            className="text-6xl md:text-8xl lg:text-9xl font-black text-white mb-8 leading-none tracking-tight"
-            initial={{ opacity: 0, y: 100 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-          >
-            50 главных<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">
-              кроссовок
-            </span><br />
-            планеты
-          </motion.h1>
-          
-          <motion.p 
-            className="text-xl md:text-2xl text-white/90 mb-12 font-light max-w-3xl mx-auto"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.3 }}
-          >
-            Проверено. Задокументировано.<br />
-            Дальше можно не искать.
-          </motion.p>
-          
-          <motion.button 
-            className="glass-button group px-12 py-6 text-xl font-semibold text-white border border-white/30 rounded-2xl hover:border-white/60 transition-all duration-500"
+        <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.6 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            Открыть коллекцию
-            <ArrowRight className="inline-block ml-3 w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" />
-          </motion.button>
+            {/* Apple-style small label */}
+            <motion.div 
+              className="inline-block bg-gray-100 text-gray-600 px-4 py-2 rounded-full text-sm font-medium mb-8"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              Кураторская коллекция
+            </motion.div>
+            
+            {/* Clean, Apple-style headline */}
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-light text-gray-900 mb-6 leading-tight tracking-tight">
+              50 главных<br />
+              <span className="font-semibold text-black">кроссовок</span><br />
+              планеты
+            </h1>
+            
+            {/* Subtle subtitle */}
+            <p className="text-xl md:text-2xl text-gray-600 mb-12 font-light max-w-2xl mx-auto leading-relaxed">
+              Проверено. Задокументировано.<br />
+              Дальше можно не искать.
+            </p>
+            
+            {/* Apple-style product preview */}
+            <motion.div
+              className="mb-12"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.4 }}
+            >
+              <div className="relative inline-block">
+                <img 
+                  src="https://images.unsplash.com/photo-1511556820780-d912e42b4980" 
+                  alt="Curated sneaker collection"
+                  className="w-80 md:w-96 h-64 md:h-80 object-cover rounded-3xl shadow-2xl"
+                />
+                <div className="absolute -bottom-6 -right-6 bg-white rounded-2xl p-4 shadow-lg">
+                  <div className="text-2xl font-semibold text-black mb-1">50</div>
+                  <div className="text-sm text-gray-500">моделей</div>
+                </div>
+              </div>
+            </motion.div>
+            
+            {/* Simple Apple-style buttons */}
+            <motion.div 
+              className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+            >
+              <button className="bg-black text-white px-8 py-4 rounded-xl font-medium text-lg hover:bg-gray-800 transition-all duration-300 min-w-48">
+                Открыть коллекцию
+              </button>
+              <button className="text-black border border-gray-300 px-8 py-4 rounded-xl font-medium text-lg hover:border-gray-400 hover:bg-gray-50 transition-all duration-300 min-w-48">
+                Узнать больше
+              </button>
+            </motion.div>
+            
+            {/* Apple-style fine print */}
+            <motion.p 
+              className="text-sm text-gray-500 mt-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+            >
+              Только оригинал с POIZON. Доставка 10-20 дней.
+            </motion.p>
+          </motion.div>
         </div>
+        
+        {/* Apple-style scroll indicator */}
+        <motion.div
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          <div className="w-6 h-10 border-2 border-gray-300 rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-gray-400 rounded-full mt-2" />
+          </div>
+        </motion.div>
       </section>
 
       {/* Section 2: Targeting */}
