@@ -15,138 +15,121 @@ import {
   Globe,
   Zap,
   Award,
-  Heart
+  Heart,
+  Circle
 } from "lucide-react";
 import "./App.css";
 
-// Mock data for products - Nothing style
+// Nothing Phone style products
 const products = [
   {
     id: 1,
-    name: "Nike Air Force 1",
+    name: "NIKE AIR FORCE 1",
     price: "19,500",
     image: "https://images.unsplash.com/photo-1587563871167-1ee9c731aefb",
-    status: "🔥 Бестселлер",
-    inStock: true
+    status: "BESTSELLER",
+    glyphPattern: "pattern-1"
   },
   {
     id: 2,
-    name: "Nike Air Max 1",
-    price: "22,000",
+    name: "NIKE AIR MAX 1",
+    price: "22,000", 
     image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff",
-    status: "💎 Проверено",
-    inStock: true
+    status: "VERIFIED",
+    glyphPattern: "pattern-2"
   },
   {
     id: 3,
-    name: "Nike Dunk Low",
+    name: "NIKE DUNK LOW",
     price: "18,500",
     image: "https://images.pexels.com/photos/20298285/pexels-photo-20298285.png",
-    status: "🔥 Бестселлер",
-    inStock: true
+    status: "BESTSELLER",
+    glyphPattern: "pattern-3"
   },
   {
     id: 4,
-    name: "Air Jordan 1 High OG",
+    name: "AIR JORDAN 1 HIGH OG",
     price: "25,000",
     image: "https://images.unsplash.com/flagged/photo-1556637640-2c80d3201be8",
-    status: "💎 Проверено",
-    inStock: true
-  },
-  {
-    id: 5,
-    name: "Adidas Ultra Boost",
-    price: "16,900",
-    image: "https://images.pexels.com/photos/18202569/pexels-photo-18202569.jpeg",
-    status: "В наличии",
-    inStock: true
-  },
-  {
-    id: 6,
-    name: "Nike Air Max 90",
-    price: "20,800",
-    image: "https://images.pexels.com/photos/5710075/pexels-photo-5710075.jpeg",
-    status: "В наличии",
-    inStock: true
-  },
-  {
-    id: 7,
-    name: "Converse Chuck Taylor",
-    price: "12,500",
-    image: "https://images.unsplash.com/photo-1562424995-2efe650421dd",
-    status: "В наличии",
-    inStock: true
-  },
-  {
-    id: 8,
-    name: "Vans Old Skool",
-    price: "14,200",
-    image: "https://images.unsplash.com/photo-1718882704207-067806784758",
-    status: "В наличии",
-    inStock: true
+    status: "VERIFIED", 
+    glyphPattern: "pattern-4"
   }
 ];
 
-// Mock testimonials
+// Nothing style testimonials
 const testimonials = [
   {
     id: 1,
-    name: "Александр К.",
+    name: "ALEXANDER K.",
     rating: 5,
-    text: "Наконец-то нашел магазин, где не нужно сомневаться в качестве. Купил Air Force 1 — приехали точно такие, как на фото.",
+    text: "FINALLY FOUND A STORE WHERE I DON'T NEED TO DOUBT THE QUALITY. BOUGHT AIR FORCE 1 — EXACTLY AS SHOWN.",
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face"
   },
   {
     id: 2,
-    name: "Мария С.",
+    name: "MARIA S.",
     rating: 5,
-    text: "Кураторский подход — это именно то, что нужно. Не надо листать тысячи моделей, здесь только лучшее.",
+    text: "CURATED APPROACH IS EXACTLY WHAT'S NEEDED. NO NEED TO SCROLL THROUGH THOUSANDS OF MODELS.",
     avatar: "https://images.unsplash.com/photo-1494790108755-2616b96c2a9d?w=100&h=100&fit=crop&crop=face"
   },
   {
     id: 3,
-    name: "Дмитрий Л.",
+    name: "DMITRY L.",
     rating: 5,
-    text: "Заказ пришел через 12 дней. Упаковка идеальная, размер подошел точно. Качество на высоте.",
+    text: "ORDER ARRIVED IN 12 DAYS. PERFECT PACKAGING, SIZE FIT EXACTLY. TOP QUALITY.",
     avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face"
   }
 ];
 
-// Process steps
+// Nothing style process steps
 const processSteps = [
   {
-    icon: <Shield className="w-8 h-8" />,
-    title: "Подлинность гарантирована",
-    description: "Каждая пара проходит многоуровневую проверку на POIZON — площадке, где подделки невозможны в принципе."
+    id: "01",
+    title: "AUTHENTICITY\nGUARANTEED",
+    description: "MULTI-LEVEL VERIFICATION ON POIZON PLATFORM. NO FAKES POSSIBLE.",
+    glyphColor: "#FF3B30"
   },
   {
-    icon: <Zap className="w-8 h-8" />,
-    title: "Быстрая доставка из Азии", 
-    description: "После оплаты твой заказ отправляется в течение 24 часов. Без задержек и непонятных статусов."
+    id: "02", 
+    title: "FAST SHIPPING\nFROM ASIA",
+    description: "ORDER SHIPS WITHIN 24 HOURS. NO DELAYS OR UNCLEAR STATUSES.",
+    glyphColor: "#FF9500"
   },
   {
-    icon: <Clock className="w-8 h-8" />,
-    title: "10-20 дней в пути",
-    description: "Чёткие сроки без пустых обещаний. Ты всегда знаешь, когда получишь свои кроссовки."
+    id: "03",
+    title: "10-20 DAYS\nIN TRANSIT",
+    description: "CLEAR TIMEFRAMES WITHOUT EMPTY PROMISES. ALWAYS KNOW WHEN TO EXPECT.",
+    glyphColor: "#FFCC02"
   },
   {
-    icon: <Eye className="w-8 h-8" />,
-    title: "Отслеживание каждого шага",
-    description: "Полный контроль над доставкой в режиме реального времени. От склада в Азии до твоего города."
+    id: "04",
+    title: "TRACK EVERY\nSTEP",
+    description: "REAL-TIME DELIVERY CONTROL. SEE EVERY MOVEMENT FROM ASIA TO YOUR CITY.",
+    glyphColor: "#34C759"
   },
   {
-    icon: <MapPin className="w-8 h-8" />,
-    title: "Получение в СДЭК",
-    description: "Забери свой заказ в ближайшем отделении СДЭК. Более 3000 пунктов выдачи по всей России."
+    id: "05",
+    title: "PICKUP AT\nSDEK",
+    description: "COLLECT AT NEAREST SDEK OFFICE. 3000+ PICKUP POINTS ACROSS RUSSIA.",
+    glyphColor: "#007AFF"
   }
 ];
 
 function App() {
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [glyphAnimation, setGlyphAnimation] = useState(0);
   const [scrollY, setScrollY] = useState(0);
 
-  // Parallax scroll effect
+  // Glyph animation cycle
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setGlyphAnimation(prev => (prev + 1) % 4);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Parallax scroll
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll);
@@ -165,59 +148,73 @@ function App() {
   };
 
   return (
-    <div className="App nothing-style">
-      {/* Header - Nothing Style */}
+    <div className="App nothing-universe">
+      {/* Nothing Header */}
       <motion.header 
-        className="fixed top-0 left-0 right-0 z-50 nothing-header"
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="nothing-header"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <nav className="flex justify-between items-center">
+        <div className="nothing-container">
+          <nav className="nothing-nav">
             <motion.div 
-              className="text-2xl font-bold text-white nothing-logo"
-              whileHover={{ scale: 1.05 }}
+              className="nothing-logo"
+              whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.2 }}
             >
-              KICKORIGIN
+              <span className="logo-text">KICKORIGIN</span>
+              <div className="logo-glyph">
+                {[...Array(3)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    className="glyph-dot"
+                    animate={{
+                      opacity: glyphAnimation === i ? 1 : 0.3,
+                      scale: glyphAnimation === i ? 1.2 : 1,
+                    }}
+                    transition={{ duration: 0.3 }}
+                  />
+                ))}
+              </div>
             </motion.div>
-            <div className="flex items-center gap-6">
-              <Globe className="w-5 h-5 text-gray-400" />
-              <span className="text-gray-400 text-sm font-medium">RU</span>
+            <div className="nothing-lang">
+              <Globe className="w-4 h-4" />
+              <span>RU</span>
             </div>
           </nav>
         </div>
       </motion.header>
 
-      {/* Hero Section - Nothing Style */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden nothing-hero">
-        {/* Background with parallax */}
+      {/* Nothing Hero */}
+      <section className="nothing-hero">
+        {/* Background with dot matrix */}
         <div 
-          className="absolute inset-0 hero-bg"
-          style={{
-            backgroundImage: `url(https://images.pexels.com/photos/20298285/pexels-photo-20298285.png)`,
-            transform: `translateY(${scrollY * 0.3}px)`,
-          }}
-        />
-        <div className="absolute inset-0 bg-black/70" />
-        
-        {/* Floating elements */}
-        <div className="absolute inset-0 pointer-events-none">
-          {[...Array(6)].map((_, i) => (
+          className="hero-background"
+          style={{ transform: `translateY(${scrollY * 0.3}px)` }}
+        >
+          <img 
+            src="https://images.pexels.com/photos/20298285/pexels-photo-20298285.png"
+            alt="Nike Dunk Low Panda"
+            className="hero-image"
+          />
+          <div className="hero-overlay" />
+          <div className="dot-matrix-overlay" />
+        </div>
+
+        {/* Glyph Interface Elements */}
+        <div className="glyph-container">
+          {[...Array(12)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-2 h-2 bg-teal-400 rounded-full"
-              style={{
-                left: `${20 + i * 15}%`,
-                top: `${30 + i * 10}%`,
-              }}
+              className={`glyph-element glyph-${i + 1}`}
               animate={{
-                y: [0, -20, 0],
-                opacity: [0.3, 0.8, 0.3],
+                opacity: [0.2, 1, 0.2],
+                scale: [1, 1.1, 1],
               }}
               transition={{
-                duration: 3 + i * 0.5,
+                duration: 3,
+                delay: i * 0.2,
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
@@ -225,173 +222,186 @@ function App() {
           ))}
         </div>
 
-        <div className="relative z-10 text-center max-w-6xl mx-auto px-6">
+        <div className="nothing-container hero-content">
           <motion.div
+            className="hero-text"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 1, ease: "easeOut" }}
           >
             <motion.h1 
-              className="nothing-title mb-8"
+              className="nothing-hero-title"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.2 }}
+              transition={{ duration: 1.2, delay: 0.3 }}
             >
-              50 главных<br />
-              <span className="text-teal-400">кроссовок</span><br />
-              планеты
+              <span className="title-line">50 ГЛАВНЫХ</span>
+              <span className="title-highlight">КРОССОВОК</span>
+              <span className="title-line">ПЛАНЕТЫ</span>
             </motion.h1>
             
             <motion.p 
-              className="nothing-subtitle mb-12"
+              className="nothing-hero-subtitle"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              transition={{ duration: 1, delay: 0.6 }}
             >
-              Проверено. Задокументировано.<br />
-              Дальше можно не искать.
+              ПРОВЕРЕНО. ЗАДОКУМЕНТИРОВАНО.<br />
+              ДАЛЬШЕ МОЖНО НЕ ИСКАТЬ.
             </motion.p>
             
-            <motion.button 
-              className="nothing-button-primary"
+            <motion.div
+              className="hero-cta"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 1, delay: 0.9 }}
             >
-              Открыть коллекцию
-              <ArrowRight className="ml-3 w-5 h-5" />
-            </motion.button>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Emotional Block - Storytelling */}
-      <section className="py-32 bg-gray-50 relative overflow-hidden">
-        <div className="max-w-6xl mx-auto px-6">
-          <motion.div
-            className="grid lg:grid-cols-2 gap-16 items-center"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <div className="space-y-8">
-              <motion.h2 
-                className="nothing-section-title"
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-              >
-                Да, ты из тех,<br />
-                кто <span className="text-teal-500">разбирается</span>
-              </motion.h2>
-              
-              <motion.div 
-                className="space-y-6"
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                viewport={{ once: true }}
-              >
-                <p className="text-lg text-gray-600 leading-relaxed">
-                  Ты листаешь сотни предложений и знаешь: где-то здесь твоя идеальная пара. Но каждый раз один и тот же вопрос — действительно ли это оригинал? И почему такая цена?
-                </p>
-                
-                <p className="text-lg text-gray-700 leading-relaxed">
-                  Ты ценишь подлинные вещи. Не потому что это модно — просто по-другому не умеешь. Фейки вызывают физический дискомфорт, а переплачивать за чужой маркетинг — против твоих принципов.
-                </p>
-                
-                <div className="nothing-quote-card">
-                  <p className="text-xl font-medium text-gray-900 mb-4">
-                    И вот здесь, в момент выбора, мы делаем всё по-другому.
-                  </p>
-                  <p className="text-gray-600">
-                    Хватит мучиться от бесконечного выбора. Мы отбираем только те модели, которые действительно стоит носить.
-                  </p>
+              <button className="nothing-cta-button">
+                <span>ОТКРЫТЬ КОЛЛЕКЦИЮ</span>
+                <div className="button-glyph">
+                  <ArrowRight className="w-5 h-5" />
                 </div>
-              </motion.div>
-            </div>
-            
-            <motion.div
-              className="relative"
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              viewport={{ once: true }}
-            >
-              <div className="nothing-image-container">
-                <img 
-                  src="https://images.unsplash.com/photo-1562424995-2efe650421dd" 
-                  alt="Curated selection"
-                  className="w-full h-96 object-cover rounded-2xl"
-                />
-                <div className="absolute top-4 right-4 nothing-badge">
-                  Curated
-                </div>
-              </div>
+              </button>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Catalog - Nothing Grid Style */}
-      <section className="py-32 bg-black text-white">
-        <div className="max-w-7xl mx-auto px-6">
+      {/* Nothing Emotional Block */}
+      <section className="nothing-emotional">
+        <div className="nothing-container">
+          <div className="emotional-grid">
+            <motion.div
+              className="emotional-content"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="nothing-section-title">
+                <span className="title-accent">ДА,</span> ТЫ ИЗ ТЕХ,<br />
+                КТО <span className="title-highlight">РАЗБИРАЕТСЯ</span>
+              </h2>
+              
+              <div className="emotional-text">
+                <p className="text-block">
+                  ТЫ ЛИСТАЕШЬ СОТНИ ПРЕДЛОЖЕНИЙ И ЗНАЕШЬ: ГДЕ-ТО ЗДЕСЬ ТВОЯ ИДЕАЛЬНАЯ ПАРА. 
+                  НО КАЖДЫЙ РАЗ ОДИН И ТОТ ЖЕ ВОПРОС — ДЕЙСТВИТЕЛЬНО ЛИ ЭТО ОРИГИНАЛ?
+                </p>
+                
+                <p className="text-block">
+                  ТЫ ЦЕНИШЬ ПОДЛИННЫЕ ВЕЩИ. НЕ ПОТОМУ ЧТО ЭТО МОДНО — ПРОСТО ПО-ДРУГОМУ НЕ УМЕЕШЬ.
+                </p>
+                
+                <div className="nothing-quote">
+                  <div className="quote-glyph"></div>
+                  <p className="quote-text">
+                    И ВОТ ЗДЕСЬ, В МОМЕНТ ВЫБОРА,<br />
+                    МЫ ДЕЛАЕМ ВСЁ ПО-ДРУГОМУ.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              className="emotional-visual"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <div className="visual-container">
+                <img 
+                  src="https://images.unsplash.com/photo-1562424995-2efe650421dd"
+                  alt="Curated selection"
+                  className="visual-image"
+                />
+                <div className="visual-glyph-overlay">
+                  {[...Array(6)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      className={`visual-glyph visual-glyph-${i + 1}`}
+                      animate={{
+                        opacity: [0.3, 1, 0.3],
+                      }}
+                      transition={{
+                        duration: 2,
+                        delay: i * 0.3,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Nothing Catalog */}
+      <section className="nothing-catalog">
+        <div className="nothing-container">
           <motion.div
-            className="text-center mb-20"
+            className="catalog-header"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="nothing-title-white mb-6">
-              Каталог<br />
-              <span className="text-teal-400">50 моделей. Всё здесь.</span>
+            <h2 className="nothing-catalog-title">
+              КАТАЛОГ<br />
+              <span className="catalog-count">50 МОДЕЛЕЙ. ВСЁ ЗДЕСЬ.</span>
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="nothing-grid">
             {products.map((product, index) => (
               <motion.div
                 key={product.id}
-                className="nothing-product-card group"
-                initial={{ opacity: 0, y: 30 }}
+                className="nothing-product"
+                initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -10 }}
+                whileHover={{ y: -5 }}
               >
-                <div className="relative overflow-hidden rounded-xl mb-4">
+                <div className="product-image-container">
                   <img 
-                    src={product.image} 
+                    src={product.image}
                     alt={product.name}
-                    className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="product-image"
                   />
-                  <div className="absolute top-3 left-3">
-                    <span className="nothing-status-badge">
-                      {product.status}
-                    </span>
+                  <div className={`product-glyph ${product.glyphPattern}`}>
+                    {[...Array(4)].map((_, i) => (
+                      <motion.div
+                        key={i}
+                        className="glyph-pixel"
+                        animate={{
+                          opacity: [0.5, 1, 0.5],
+                        }}
+                        transition={{
+                          duration: 1.5,
+                          delay: i * 0.1,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        }}
+                      />
+                    ))}
                   </div>
-                  {product.inStock && (
-                    <div className="absolute bottom-3 right-3">
-                      <span className="nothing-stock-badge">
-                        В наличии
-                      </span>
-                    </div>
-                  )}
+                  <div className="product-status">
+                    {product.status}
+                  </div>
                 </div>
                 
-                <div className="space-y-3">
-                  <h3 className="text-lg font-semibold text-white">{product.name}</h3>
-                  <div className="flex items-center justify-between">
-                    <span className="text-2xl font-bold text-teal-400">{product.price} ₽</span>
-                  </div>
+                <div className="product-info">
+                  <h3 className="product-name">{product.name}</h3>
+                  <div className="product-price">{product.price} ₽</div>
+                  <div className="product-stock">В НАЛИЧИИ</div>
                   
-                  <button className="nothing-button-secondary w-full">
-                    Купить
+                  <button className="product-buy-button">
+                    <span>КУПИТЬ</span>
+                    <div className="button-dot"></div>
                   </button>
                 </div>
               </motion.div>
@@ -400,211 +410,271 @@ function App() {
         </div>
       </section>
 
-      {/* Process Steps - Nothing Style */}
-      <section className="py-32 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
+      {/* Nothing Process */}
+      <section className="nothing-process">
+        <div className="nothing-container">
           <motion.div
-            className="text-center mb-20"
+            className="process-header"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="nothing-section-title mb-6">
-              Твой путь к<br />
-              <span className="text-teal-500">оригинальным кроссовкам</span>
+            <h2 className="nothing-section-title">
+              ТВОЙ ПУТЬ К<br />
+              <span className="title-highlight">ОРИГИНАЛЬНЫМ КРОССОВКАМ</span>
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
+          <div className="process-grid">
             {processSteps.map((step, index) => (
               <motion.div
-                key={index}
-                className="nothing-process-step"
+                key={step.id}
+                className="process-step"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -5 }}
               >
-                <div className="nothing-process-icon">
-                  {step.icon}
+                <div className="step-number" style={{ color: step.glyphColor }}>
+                  {step.id}
                 </div>
-                <div className="text-center mt-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                    {step.title}
-                  </h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">
-                    {step.description}
-                  </p>
+                <div className="step-glyph" style={{ borderColor: step.glyphColor }}>
+                  <motion.div
+                    className="glyph-indicator"
+                    style={{ backgroundColor: step.glyphColor }}
+                    animate={{
+                      scale: [1, 1.2, 1],
+                      opacity: [1, 0.7, 1],
+                    }}
+                    transition={{
+                      duration: 2,
+                      delay: index * 0.2,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  />
                 </div>
+                <h3 className="step-title">{step.title}</h3>
+                <p className="step-description">{step.description}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Reviews - Nothing Cards */}
-      <section className="py-32 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6">
+      {/* Nothing Reviews */}
+      <section className="nothing-reviews">
+        <div className="nothing-container">
           <motion.div
-            className="text-center mb-20"
+            className="reviews-header"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="nothing-section-title mb-4">Отзывы</h2>
-            <p className="text-xl text-gray-600">Что говорят покупатели</p>
+            <h2 className="nothing-section-title">ОТЗЫВЫ</h2>
+            <p className="reviews-subtitle">ЧТО ГОВОРЯТ ПОКУПАТЕЛИ</p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
+          <div className="reviews-grid">
+            {testimonials.map((review, index) => (
               <motion.div
-                key={testimonial.id}
-                className="nothing-review-card"
+                key={review.id}
+                className="review-card"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -5 }}
               >
-                <div className="flex items-center mb-6">
+                <div className="review-header">
                   <img 
-                    src={testimonial.avatar} 
-                    alt={testimonial.name}
-                    className="w-12 h-12 rounded-full mr-4"
+                    src={review.avatar}
+                    alt={review.name}
+                    className="review-avatar"
                   />
-                  <div>
-                    <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
-                    <div className="flex text-teal-500 mt-1">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 fill-current" />
+                  <div className="review-info">
+                    <h4 className="review-name">{review.name}</h4>
+                    <div className="review-rating">
+                      {[...Array(review.rating)].map((_, i) => (
+                        <Star key={i} className="star" />
                       ))}
                     </div>
                   </div>
+                  <div className="review-glyph">
+                    <motion.div
+                      className="glyph-pulse"
+                      animate={{
+                        opacity: [0.5, 1, 0.5],
+                      }}
+                      transition={{
+                        duration: 2,
+                        delay: index * 0.3,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                    />
+                  </div>
                 </div>
-                <p className="text-gray-600 leading-relaxed">{testimonial.text}</p>
+                <p className="review-text">{review.text}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Telegram - Last Call Section */}
-      <section className="py-32 bg-black text-white relative overflow-hidden">
-        <div className="absolute inset-0">
-          {[...Array(4)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1 h-1 bg-teal-400 rounded-full opacity-60"
-              style={{
-                left: `${10 + i * 25}%`,
-                top: `${20 + i * 15}%`,
-              }}
-              animate={{
-                scale: [1, 1.5, 1],
-                opacity: [0.6, 1, 0.6],
-              }}
-              transition={{
-                duration: 2 + i * 0.5,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            />
-          ))}
+      {/* Nothing Telegram */}
+      <section className="nothing-telegram">
+        <div className="telegram-background">
+          <div className="telegram-glyph-pattern">
+            {[...Array(20)].map((_, i) => (
+              <motion.div
+                key={i}
+                className={`telegram-glyph telegram-glyph-${i + 1}`}
+                animate={{
+                  opacity: [0.3, 1, 0.3],
+                  scale: [1, 1.1, 1],
+                }}
+                transition={{
+                  duration: 3,
+                  delay: i * 0.1,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+            ))}
+          </div>
         </div>
 
-        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
+        <div className="nothing-container">
           <motion.div
+            className="telegram-content"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <div className="nothing-telegram-icon mb-8">
-              <MessageCircle className="w-12 h-12 text-teal-400" />
+            <div className="telegram-icon">
+              <MessageCircle className="w-8 h-8" />
+              <div className="icon-glyph">
+                {[...Array(4)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    className="icon-dot"
+                    animate={{
+                      opacity: [0.5, 1, 0.5],
+                    }}
+                    transition={{
+                      duration: 1.5,
+                      delay: i * 0.2,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  />
+                ))}
+              </div>
             </div>
             
-            <h2 className="nothing-title-white mb-6">
-              Telegram
-            </h2>
-            <p className="text-xl text-gray-300 mb-12">
-              Скидка 500₽ за подписку. Пишем про сникер-культуру
+            <h2 className="telegram-title">TELEGRAM</h2>
+            <p className="telegram-subtitle">
+              СКИДКА 500₽ ЗА ПОДПИСКУ.<br />
+              ПИШЕМ ПРО СНИКЕР-КУЛЬТУРУ
             </p>
 
             {!isSubmitted ? (
-              <form onSubmit={handleNewsletterSubmit} className="max-w-md mx-auto">
-                <div className="nothing-form-container">
+              <form onSubmit={handleNewsletterSubmit} className="telegram-form">
+                <div className="form-container">
                   <input
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Ваш email для получения скидки"
-                    className="nothing-input mb-6"
+                    placeholder="ВАШ EMAIL ДЛЯ ПОЛУЧЕНИЯ СКИДКИ"
+                    className="telegram-input"
                     required
                   />
-                  <button 
-                    type="submit"
-                    className="nothing-button-primary w-full"
-                  >
-                    Получить скидку 500₽
+                  <button type="submit" className="telegram-submit">
+                    <span>ПОЛУЧИТЬ СКИДКУ 500₽</span>
+                    <div className="submit-glyph">
+                      <motion.div
+                        className="glyph-arrow"
+                        animate={{
+                          x: [0, 5, 0],
+                        }}
+                        transition={{
+                          duration: 1.5,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        }}
+                      />
+                    </div>
                   </button>
                 </div>
               </form>
             ) : (
               <motion.div
+                className="telegram-success"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="nothing-success-message"
+                transition={{ duration: 0.5 }}
               >
-                <CheckCircle className="w-8 h-8 text-teal-400 mx-auto mb-4" />
-                <p className="text-white">
-                  Спасибо! Скоро пришлем ссылку на Telegram-канал со скидкой 500₽
-                </p>
+                <CheckCircle className="w-8 h-8" />
+                <p>СПАСИБО! СКОРО ПРИШЛЕМ ССЫЛКУ НА TELEGRAM-КАНАЛ СО СКИДКОЙ 500₽</p>
               </motion.div>
             )}
           </motion.div>
         </div>
       </section>
 
-      {/* Footer - Nothing Minimal */}
-      <footer className="bg-gray-900 text-white py-16">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="col-span-2">
-              <h3 className="text-2xl font-bold mb-4 text-teal-400">
-                KICKORIGIN
-              </h3>
-              <p className="text-gray-400 text-lg leading-relaxed">
-                50 главных кроссовок планеты.<br />
-                Проверено. Задокументировано.
+      {/* Nothing Footer */}
+      <footer className="nothing-footer">
+        <div className="nothing-container">
+          <div className="footer-content">
+            <div className="footer-brand">
+              <h3 className="footer-logo">KICKORIGIN</h3>
+              <p className="footer-tagline">
+                50 ГЛАВНЫХ КРОССОВОК ПЛАНЕТЫ.<br />
+                ПРОВЕРЕНО. ЗАДОКУМЕНТИРОВАНО.
               </p>
             </div>
             
-            <div>
-              <h4 className="font-semibold mb-4">Навигация</h4>
-              <div className="space-y-2">
-                <a href="#" className="block text-gray-400 hover:text-teal-400 transition-colors">Каталог</a>
-                <a href="#" className="block text-gray-400 hover:text-teal-400 transition-colors">FAQ</a>
-                <a href="#" className="block text-gray-400 hover:text-teal-400 transition-colors">Контакты</a>
+            <div className="footer-links">
+              <div className="footer-column">
+                <h4>НАВИГАЦИЯ</h4>
+                <a href="#">КАТАЛОГ</a>
+                <a href="#">FAQ</a>
+                <a href="#">КОНТАКТЫ</a>
               </div>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold mb-4">Поддержка</h4>
-              <div className="space-y-2">
-                <a href="#" className="block text-gray-400 hover:text-teal-400 transition-colors">Доставка</a>
-                <a href="#" className="block text-gray-400 hover:text-teal-400 transition-colors">Гарантии</a>
-                <a href="#" className="block text-gray-400 hover:text-teal-400 transition-colors">Возврат</a>
+              
+              <div className="footer-column">
+                <h4>ПОДДЕРЖКА</h4>
+                <a href="#">ДОСТАВКА</a>
+                <a href="#">ГАРАНТИИ</a>
+                <a href="#">ВОЗВРАТ</a>
               </div>
             </div>
           </div>
           
-          <div className="border-t border-gray-700 mt-12 pt-8 text-center">
-            <p className="text-gray-500 text-sm">
-              © 2024 KICKORIGIN. Все права защищены.
-            </p>
+          <div className="footer-bottom">
+            <div className="footer-glyph">
+              {[...Array(5)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="footer-dot"
+                  animate={{
+                    opacity: [0.3, 1, 0.3],
+                  }}
+                  transition={{
+                    duration: 2,
+                    delay: i * 0.1,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
+              ))}
+            </div>
+            <p>© 2024 KICKORIGIN. ВСЕ ПРАВА ЗАЩИЩЕНЫ.</p>
           </div>
         </div>
       </footer>
