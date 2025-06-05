@@ -11,53 +11,79 @@ import {
   CheckCircle,
   User,
   Package,
-  MapPin
+  MapPin,
+  Globe,
+  Zap,
+  Award,
+  Heart
 } from "lucide-react";
 import "./App.css";
 
-// Mock data for products
+// Mock data for products - Nothing style
 const products = [
   {
     id: 1,
-    name: "Nike Air Jordan 1 Retro High",
+    name: "Nike Air Force 1",
     price: "19,500",
-    image: "https://images.unsplash.com/photo-1609011809547-fec587101c8d",
-    category: "Классика"
+    image: "https://images.unsplash.com/photo-1587563871167-1ee9c731aefb",
+    status: "🔥 Бестселлер",
+    inStock: true
   },
   {
     id: 2,
-    name: "Nike Air More Uptempo",
+    name: "Nike Air Max 1",
     price: "22,000",
-    image: "https://images.unsplash.com/photo-1497149988863-70b8d8483b78",
-    category: "Эксклюзив"
+    image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff",
+    status: "💎 Проверено",
+    inStock: true
   },
   {
     id: 3,
-    name: "Air Jordan Collection",
+    name: "Nike Dunk Low",
     price: "18,500",
-    image: "https://images.unsplash.com/photo-1495555961986-6d4c1ecb7be3",
-    category: "Коллекция"
+    image: "https://images.pexels.com/photos/20298285/pexels-photo-20298285.png",
+    status: "🔥 Бестселлер",
+    inStock: true
   },
   {
     id: 4,
-    name: "Premium Nike Air Max",
-    price: "20,800",
-    image: "https://images.unsplash.com/photo-1511556670410-f6989d6b0766",
-    category: "Топ"
+    name: "Air Jordan 1 High OG",
+    price: "25,000",
+    image: "https://images.unsplash.com/flagged/photo-1556637640-2c80d3201be8",
+    status: "💎 Проверено",
+    inStock: true
   },
   {
     id: 5,
-    name: "Adidas Lifestyle",
+    name: "Adidas Ultra Boost",
     price: "16,900",
-    image: "https://images.pexels.com/photos/684152/pexels-photo-684152.jpeg",
-    category: "Стиль"
+    image: "https://images.pexels.com/photos/18202569/pexels-photo-18202569.jpeg",
+    status: "В наличии",
+    inStock: true
   },
   {
     id: 6,
-    name: "Sneaker Details",
-    price: "21,300",
-    image: "https://images.pexels.com/photos/8764560/pexels-photo-8764560.jpeg",
-    category: "Детали"
+    name: "Nike Air Max 90",
+    price: "20,800",
+    image: "https://images.pexels.com/photos/5710075/pexels-photo-5710075.jpeg",
+    status: "В наличии",
+    inStock: true
+  },
+  {
+    id: 7,
+    name: "Converse Chuck Taylor",
+    price: "12,500",
+    image: "https://images.unsplash.com/photo-1562424995-2efe650421dd",
+    status: "В наличии",
+    inStock: true
+  },
+  {
+    id: 8,
+    name: "Vans Old Skool",
+    price: "14,200",
+    image: "https://images.unsplash.com/photo-1718882704207-067806784758",
+    status: "В наличии",
+    inStock: true
   }
 ];
 
@@ -65,30 +91,67 @@ const products = [
 const testimonials = [
   {
     id: 1,
-    name: "Андрей С.",
+    name: "Александр К.",
     rating: 5,
-    text: "Наконец-то нашел место, где не нужно гадать — оригинал или нет. Взял Jordan 1, качество идеальное, пришли за 14 дней.",
+    text: "Наконец-то нашел магазин, где не нужно сомневаться в качестве. Купил Air Force 1 — приехали точно такие, как на фото.",
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face"
   },
   {
     id: 2,
-    name: "Мария К.",
+    name: "Мария С.",
     rating: 5,
-    text: "Устала от поисков в интернете. Здесь действительно отобрано всё лучшее. Заказала Air Max, получила именно то, что ожидала.",
+    text: "Кураторский подход — это именно то, что нужно. Не надо листать тысячи моделей, здесь только лучшее.",
     avatar: "https://images.unsplash.com/photo-1494790108755-2616b96c2a9d?w=100&h=100&fit=crop&crop=face"
   },
   {
     id: 3,
     name: "Дмитрий Л.",
     rating: 5,
-    text: "Кураторский подход — это то, что я искал. Не надо листать тысячи вариантов, всё уже отобрано. Качество гарантировано.",
+    text: "Заказ пришел через 12 дней. Упаковка идеальная, размер подошел точно. Качество на высоте.",
     avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face"
+  }
+];
+
+// Process steps
+const processSteps = [
+  {
+    icon: <Shield className="w-8 h-8" />,
+    title: "Подлинность гарантирована",
+    description: "Каждая пара проходит многоуровневую проверку на POIZON — площадке, где подделки невозможны в принципе."
+  },
+  {
+    icon: <Zap className="w-8 h-8" />,
+    title: "Быстрая доставка из Азии", 
+    description: "После оплаты твой заказ отправляется в течение 24 часов. Без задержек и непонятных статусов."
+  },
+  {
+    icon: <Clock className="w-8 h-8" />,
+    title: "10-20 дней в пути",
+    description: "Чёткие сроки без пустых обещаний. Ты всегда знаешь, когда получишь свои кроссовки."
+  },
+  {
+    icon: <Eye className="w-8 h-8" />,
+    title: "Отслеживание каждого шага",
+    description: "Полный контроль над доставкой в режиме реального времени. От склада в Азии до твоего города."
+  },
+  {
+    icon: <MapPin className="w-8 h-8" />,
+    title: "Получение в СДЭК",
+    description: "Забери свой заказ в ближайшем отделении СДЭК. Более 3000 пунктов выдачи по всей России."
   }
 ];
 
 function App() {
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+
+  // Parallax scroll effect
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleNewsletterSubmit = (e) => {
     e.preventDefault();
@@ -101,468 +164,389 @@ function App() {
     }
   };
 
-  // Parallax effect for hero
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrolled = window.pageYOffset;
-      const parallax = document.querySelector('.parallax-bg');
-      if (parallax) {
-        parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
-    <div className="App">
-      {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 glass-nav">
-        <div className="max-w-7xl mx-auto px-4 py-4">
+    <div className="App nothing-style">
+      {/* Header - Nothing Style */}
+      <motion.header 
+        className="fixed top-0 left-0 right-0 z-50 nothing-header"
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <div className="max-w-7xl mx-auto px-6 py-4">
           <nav className="flex justify-between items-center">
-            <div className="text-2xl font-bold text-white">KICKORIGIN</div>
-            <div className="hidden md:flex space-x-8 text-white/80">
-              <a href="#catalog" className="hover:text-white transition-colors">Каталог</a>
-              <a href="#process" className="hover:text-white transition-colors">Процесс</a>
-              <a href="#reviews" className="hover:text-white transition-colors">Отзывы</a>
-              <a href="#telegram" className="hover:text-white transition-colors">Telegram</a>
+            <motion.div 
+              className="text-2xl font-bold text-white nothing-logo"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.2 }}
+            >
+              KICKORIGIN
+            </motion.div>
+            <div className="flex items-center gap-6">
+              <Globe className="w-5 h-5 text-gray-400" />
+              <span className="text-gray-400 text-sm font-medium">RU</span>
             </div>
           </nav>
         </div>
-      </header>
+      </motion.header>
 
-      {/* Section 1: УТП */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Hero Section - Nothing Style */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden nothing-hero">
+        {/* Background with parallax */}
         <div 
-          className="parallax-bg absolute inset-0 opacity-40"
+          className="absolute inset-0 hero-bg"
           style={{
-            backgroundImage: `url(https://images.unsplash.com/photo-1511556820780-d912e42b4980)`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center'
+            backgroundImage: `url(https://images.pexels.com/photos/20298285/pexels-photo-20298285.png)`,
+            transform: `translateY(${scrollY * 0.3}px)`,
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/80 via-purple-900/70 to-blue-900/80" />
+        <div className="absolute inset-0 bg-black/70" />
         
-        <div className="relative z-10 text-center max-w-5xl mx-auto px-4">
-          <motion.h1
-            className="text-6xl md:text-8xl lg:text-9xl font-black text-white mb-8 leading-none tracking-tight"
-            initial={{ opacity: 0, y: 100 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-          >
-            50 главных<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">
-              кроссовок
-            </span><br />
-            планеты
-          </motion.h1>
-          
-          <motion.p 
-            className="text-xl md:text-2xl text-white/90 mb-12 font-light max-w-3xl mx-auto"
+        {/* Floating elements */}
+        <div className="absolute inset-0 pointer-events-none">
+          {[...Array(6)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-2 h-2 bg-teal-400 rounded-full"
+              style={{
+                left: `${20 + i * 15}%`,
+                top: `${30 + i * 10}%`,
+              }}
+              animate={{
+                y: [0, -20, 0],
+                opacity: [0.3, 0.8, 0.3],
+              }}
+              transition={{
+                duration: 3 + i * 0.5,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            />
+          ))}
+        </div>
+
+        <div className="relative z-10 text-center max-w-6xl mx-auto px-6">
+          <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.3 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            Проверено. Задокументировано.<br />
-            Дальше можно не искать.
-          </motion.p>
-          
-          <motion.button 
-            className="glass-button group px-12 py-6 text-xl font-semibold text-white border border-white/30 rounded-2xl hover:border-white/60 transition-all duration-500"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.6 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Открыть коллекцию
-            <ArrowRight className="inline-block ml-3 w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" />
-          </motion.button>
+            <motion.h1 
+              className="nothing-title mb-8"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.2 }}
+            >
+              50 главных<br />
+              <span className="text-teal-400">кроссовок</span><br />
+              планеты
+            </motion.h1>
+            
+            <motion.p 
+              className="nothing-subtitle mb-12"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              Проверено. Задокументировано.<br />
+              Дальше можно не искать.
+            </motion.p>
+            
+            <motion.button 
+              className="nothing-button-primary"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Открыть коллекцию
+              <ArrowRight className="ml-3 w-5 h-5" />
+            </motion.button>
+          </motion.div>
         </div>
       </section>
 
-      {/* Section 2: Targeting */}
-      <section className="py-32 bg-gradient-to-b from-slate-50 to-white relative overflow-hidden">
-        <div className="absolute inset-0 pattern-grid opacity-30" />
-        
-        <div className="max-w-6xl mx-auto px-4 relative z-10">
+      {/* Emotional Block - Storytelling */}
+      <section className="py-32 bg-gray-50 relative overflow-hidden">
+        <div className="max-w-6xl mx-auto px-6">
           <motion.div
-            className="text-center mb-20"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            className="grid lg:grid-cols-2 gap-16 items-center"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-5xl md:text-7xl font-bold text-slate-900 mb-8 leading-tight">
-              "Да, ты из тех,<br />
-              кто <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">разбирается</span>"
-            </h2>
-            
-            <p className="text-2xl md:text-3xl text-slate-600 mb-16 font-light leading-relaxed">
-              "Ты листаешь сотни предложений и знаешь: где-то здесь твоя идеальная пара. Но каждый раз один и тот же вопрос — действительно ли это оригинал? И почему такая цена?"
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <motion.div
-              className="space-y-8"
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <div className="prose prose-lg text-slate-700 leading-relaxed">
-                <p className="text-xl mb-6">
+            <div className="space-y-8">
+              <motion.h2 
+                className="nothing-section-title"
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+              >
+                Да, ты из тех,<br />
+                кто <span className="text-teal-500">разбирается</span>
+              </motion.h2>
+              
+              <motion.div 
+                className="space-y-6"
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: true }}
+              >
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  Ты листаешь сотни предложений и знаешь: где-то здесь твоя идеальная пара. Но каждый раз один и тот же вопрос — действительно ли это оригинал? И почему такая цена?
+                </p>
+                
+                <p className="text-lg text-gray-700 leading-relaxed">
                   Ты ценишь подлинные вещи. Не потому что это модно — просто по-другому не умеешь. Фейки вызывают физический дискомфорт, а переплачивать за чужой маркетинг — против твоих принципов.
                 </p>
                 
-                <p className="text-xl mb-8">
-                  Ты знаешь, чего хочешь. Но когда открываешь очередной маркетплейс... Сотни моделей. Тысячи продавцов. Миллион вопросов без ответов. И каждый раз следопытом — проверять, перепроверять, сомневаться.
-                </p>
-
-                <div className="bg-white/70 backdrop-blur-lg p-8 rounded-3xl border border-white/30 shadow-lg">
-                  <p className="text-lg font-medium text-slate-800 mb-4">Знакомо, когда:</p>
-                  <ul className="space-y-3 text-slate-700">
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-violet-500 rounded-full mt-3 flex-shrink-0" />
-                      Нашел идеальную модель, но сомневаешься в подлинности
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-violet-500 rounded-full mt-3 flex-shrink-0" />
-                      Видишь явно завышенную цену и понимаешь, что платишь за чужую рекламу
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-violet-500 rounded-full mt-3 flex-shrink-0" />
-                      Открываешь каталог и через 15 минут закрываешь — глаза разбегаются
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-violet-500 rounded-full mt-3 flex-shrink-0" />
-                      Чувствуешь себя одиноким в этом бесконечном поиске
-                    </li>
-                  </ul>
+                <div className="nothing-quote-card">
+                  <p className="text-xl font-medium text-gray-900 mb-4">
+                    И вот здесь, в момент выбора, мы делаем всё по-другому.
+                  </p>
+                  <p className="text-gray-600">
+                    Хватит мучиться от бесконечного выбора. Мы отбираем только те модели, которые действительно стоит носить.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+            
+            <motion.div
+              className="relative"
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              viewport={{ once: true }}
+            >
+              <div className="nothing-image-container">
+                <img 
+                  src="https://images.unsplash.com/photo-1562424995-2efe650421dd" 
+                  alt="Curated selection"
+                  className="w-full h-96 object-cover rounded-2xl"
+                />
+                <div className="absolute top-4 right-4 nothing-badge">
+                  Curated
                 </div>
               </div>
             </motion.div>
-
-            <motion.div
-              className="relative"
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <div className="relative">
-                <img 
-                  src="https://images.pexels.com/photos/2364589/pexels-photo-2364589.jpeg" 
-                  alt="Sneaker enthusiast"
-                  className="w-full h-96 object-cover rounded-3xl shadow-2xl"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-violet-900/30 to-transparent rounded-3xl" />
-              </div>
-            </motion.div>
-          </div>
-
-          <motion.div
-            className="mt-20 text-center"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <div className="bg-gradient-to-r from-violet-600 to-indigo-600 p-12 rounded-3xl text-white">
-              <h3 className="text-3xl md:text-4xl font-bold mb-6">
-                И вот здесь, в момент выбора, мы делаем всё по-другому.
-              </h3>
-              
-              <p className="text-xl mb-8 opacity-90 leading-relaxed">
-                Хватит мучиться от бесконечного выбора. Мы отбираем только те модели, которые действительно стоит носить. Никаких лишних вариантов, только кураторский подход, который делает твой выбор лёгким и уверенным.
-              </p>
-              
-              <p className="text-lg mb-10 opacity-80">
-                Мы такие же, как ты. Мы создали то, чего сами не могли найти — место, где не нужно выбирать между оригинальностью и разумной ценой. Где каждая модель прошла отбор, и ты точно знаешь, за что платишь.
-              </p>
-              
-              <button className="bg-white text-violet-600 px-10 py-4 rounded-2xl font-semibold text-lg hover:bg-gray-50 transition-colors duration-300 group">
-                Показать коллекцию
-                <ArrowRight className="inline-block ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-              </button>
-            </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Section 3: Catalog */}
-      <section id="catalog" className="py-32 bg-gradient-to-b from-slate-900 to-black relative overflow-hidden">
-        <div className="absolute inset-0 pattern-dots opacity-30" />
-        
-        <div className="max-w-7xl mx-auto px-4 relative z-10">
+      {/* Catalog - Nothing Grid Style */}
+      <section className="py-32 bg-black text-white">
+        <div className="max-w-7xl mx-auto px-6">
           <motion.div
             className="text-center mb-20"
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-6xl md:text-8xl font-black text-white mb-8 leading-none">
-              Каталог
+            <h2 className="nothing-title-white mb-6">
+              Каталог<br />
+              <span className="text-teal-400">50 моделей. Всё здесь.</span>
             </h2>
-            <p className="text-2xl md:text-3xl text-gray-400 font-light">
-              50 моделей. Всё здесь.
-            </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {products.map((product, index) => (
               <motion.div
                 key={product.id}
-                className="group relative overflow-hidden rounded-3xl"
-                initial={{ opacity: 0, y: 50 }}
+                className="nothing-product-card group"
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -10 }}
               >
-                <div className="glass-card h-full">
-                  <div className="relative overflow-hidden rounded-2xl">
-                    <img 
-                      src={product.image} 
-                      alt={product.name}
-                      className="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute top-4 left-4">
-                      <span className="bg-gradient-to-r from-violet-500 to-purple-500 text-white px-3 py-1 rounded-full text-sm font-medium">
-                        {product.category}
+                <div className="relative overflow-hidden rounded-xl mb-4">
+                  <img 
+                    src={product.image} 
+                    alt={product.name}
+                    className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute top-3 left-3">
+                    <span className="nothing-status-badge">
+                      {product.status}
+                    </span>
+                  </div>
+                  {product.inStock && (
+                    <div className="absolute bottom-3 right-3">
+                      <span className="nothing-stock-badge">
+                        В наличии
                       </span>
                     </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </div>
-                  
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-white mb-2">{product.name}</h3>
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-400">
-                        {product.price} ₽
-                      </span>
-                    </div>
-                    
-                    <button className="w-full bg-gradient-to-r from-violet-600 to-indigo-600 text-white py-3 rounded-xl font-semibold hover:from-violet-700 hover:to-indigo-700 transition-all duration-300 group-hover:scale-105">
-                      Заказать
-                    </button>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          <motion.div
-            className="text-center mt-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <button className="glass-button px-12 py-4 text-xl font-semibold text-white border border-white/30 rounded-2xl hover:border-white/60 transition-all duration-500">
-              Показать все 50 моделей
-            </button>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Section 4: Process */}
-      <section id="process" className="py-32 bg-gradient-to-b from-white to-slate-50">
-        <div className="max-w-6xl mx-auto px-4">
-          <motion.div
-            className="text-center mb-20"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-5xl md:text-7xl font-bold text-slate-900 mb-8 leading-tight">
-              Твой путь к<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">
-                оригинальным кроссовкам
-              </span>
-            </h2>
-          </motion.div>
-
-          <div className="space-y-16">
-            {[
-              {
-                number: "1",
-                title: "Подлинность гарантирована",
-                description: "Каждая пара проходит многоуровневую проверку на POIZON — площадке, где подделки невозможны в принципе. Никаких \"почти оригиналов\" и \"точных копий\".",
-                icon: <Shield className="w-8 h-8" />,
-                image: "https://images.unsplash.com/photo-1511556820780-d912e42b4980"
-              },
-              {
-                number: "2",
-                title: "Быстрая доставка из Азии",
-                description: "После оплаты твой заказ отправляется в течение 24 часов. Без задержек и непонятных статусов.",
-                icon: <Clock className="w-8 h-8" />,
-                image: "https://images.unsplash.com/photo-1567535969438-dffc001e5804"
-              },
-              {
-                number: "3",
-                title: "10-20 дней в пути",
-                description: "Чёткие сроки без пустых обещаний. Ты всегда знаешь, когда получишь свои кроссовки.",
-                icon: <Truck className="w-8 h-8" />,
-                image: "https://images.pexels.com/photos/8764560/pexels-photo-8764560.jpeg"
-              },
-              {
-                number: "4",
-                title: "Отслеживание каждого шага",
-                description: "Полный контроль над доставкой в режиме реального времени. От склада в Азии до твоего города — видишь каждое перемещение заказа.",
-                icon: <Eye className="w-8 h-8" />,
-                image: "https://images.pexels.com/photos/684152/pexels-photo-684152.jpeg"
-              },
-              {
-                number: "5",
-                title: "Получение в СДЭК",
-                description: "Забери свой заказ в ближайшем отделении СДЭК. Более 3000 пунктов выдачи по всей России.",
-                icon: <MapPin className="w-8 h-8" />,
-                image: "https://images.unsplash.com/photo-1495555961986-6d4c1ecb7be3"
-              }
-            ].map((step, index) => (
-              <motion.div
-                key={index}
-                className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12`}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <div className="flex-1">
-                  <div className="flex items-center gap-6 mb-6">
-                    <div className="w-16 h-16 bg-gradient-to-r from-violet-600 to-indigo-600 rounded-2xl flex items-center justify-center text-white font-bold text-2xl">
-                      {step.number}
-                    </div>
-                    <div className="w-12 h-12 bg-violet-100 rounded-xl flex items-center justify-center text-violet-600">
-                      {step.icon}
-                    </div>
-                  </div>
-                  
-                  <h3 className="text-3xl font-bold text-slate-900 mb-4">{step.title}</h3>
-                  <p className="text-xl text-slate-600 leading-relaxed">{step.description}</p>
+                  )}
                 </div>
                 
-                <div className="flex-1">
-                  <div className="relative">
-                    <img 
-                      src={step.image} 
-                      alt={step.title}
-                      className="w-full h-80 object-cover rounded-3xl shadow-2xl"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-violet-900/20 to-transparent rounded-3xl" />
+                <div className="space-y-3">
+                  <h3 className="text-lg font-semibold text-white">{product.name}</h3>
+                  <div className="flex items-center justify-between">
+                    <span className="text-2xl font-bold text-teal-400">{product.price} ₽</span>
                   </div>
+                  
+                  <button className="nothing-button-secondary w-full">
+                    Купить
+                  </button>
                 </div>
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
 
+      {/* Process Steps - Nothing Style */}
+      <section className="py-32 bg-white">
+        <div className="max-w-6xl mx-auto px-6">
           <motion.div
-            className="text-center mt-20"
+            className="text-center mb-20"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <button className="bg-gradient-to-r from-violet-600 to-indigo-600 text-white px-12 py-4 rounded-2xl font-semibold text-xl hover:from-violet-700 hover:to-indigo-700 transition-all duration-300 group">
-              Выбрать кроссовки
-              <ArrowRight className="inline-block ml-3 w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
-            </button>
+            <h2 className="nothing-section-title mb-6">
+              Твой путь к<br />
+              <span className="text-teal-500">оригинальным кроссовкам</span>
+            </h2>
           </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
+            {processSteps.map((step, index) => (
+              <motion.div
+                key={index}
+                className="nothing-process-step"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -5 }}
+              >
+                <div className="nothing-process-icon">
+                  {step.icon}
+                </div>
+                <div className="text-center mt-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                    {step.title}
+                  </h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Section 5: Reviews */}
-      <section id="reviews" className="py-32 bg-gradient-to-b from-slate-900 to-black">
-        <div className="max-w-7xl mx-auto px-4">
+      {/* Reviews - Nothing Cards */}
+      <section className="py-32 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6">
           <motion.div
             className="text-center mb-20"
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-6xl md:text-8xl font-black text-white mb-8 leading-none">
-              Отзывы
-            </h2>
-            <p className="text-2xl text-gray-400 font-light">
-              Что говорят покупатели
-            </p>
+            <h2 className="nothing-section-title mb-4">Отзывы</h2>
+            <p className="text-xl text-gray-600">Что говорят покупатели</p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
               <motion.div
                 key={testimonial.id}
-                className="glass-card p-8"
-                initial={{ opacity: 0, y: 50 }}
+                className="nothing-review-card"
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -10 }}
+                whileHover={{ y: -5 }}
               >
                 <div className="flex items-center mb-6">
                   <img 
                     src={testimonial.avatar} 
                     alt={testimonial.name}
-                    className="w-16 h-16 rounded-full mr-4 border-2 border-violet-500"
+                    className="w-12 h-12 rounded-full mr-4"
                   />
                   <div>
-                    <h4 className="font-bold text-white text-lg">{testimonial.name}</h4>
-                    <div className="flex text-yellow-400 mt-1">
+                    <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
+                    <div className="flex text-teal-500 mt-1">
                       {[...Array(testimonial.rating)].map((_, i) => (
                         <Star key={i} className="w-4 h-4 fill-current" />
                       ))}
                     </div>
                   </div>
                 </div>
-                <p className="text-gray-300 leading-relaxed text-lg">{testimonial.text}</p>
+                <p className="text-gray-600 leading-relaxed">{testimonial.text}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Section 6: Telegram */}
-      <section id="telegram" className="py-32 bg-gradient-to-b from-violet-900 to-indigo-900 relative overflow-hidden">
-        <div className="absolute inset-0 pattern-hexagon opacity-20" />
-        
-        <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
+      {/* Telegram - Last Call Section */}
+      <section className="py-32 bg-black text-white relative overflow-hidden">
+        <div className="absolute inset-0">
+          {[...Array(4)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-teal-400 rounded-full opacity-60"
+              style={{
+                left: `${10 + i * 25}%`,
+                top: `${20 + i * 15}%`,
+              }}
+              animate={{
+                scale: [1, 1.5, 1],
+                opacity: [0.6, 1, 0.6],
+              }}
+              transition={{
+                duration: 2 + i * 0.5,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            />
+          ))}
+        </div>
+
+        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <div className="inline-flex items-center justify-center w-20 h-20 bg-white/10 backdrop-blur-lg rounded-3xl mb-8">
-              <MessageCircle className="w-10 h-10 text-white" />
+            <div className="nothing-telegram-icon mb-8">
+              <MessageCircle className="w-12 h-12 text-teal-400" />
             </div>
             
-            <h2 className="text-6xl md:text-8xl font-black text-white mb-8 leading-none">
+            <h2 className="nothing-title-white mb-6">
               Telegram
             </h2>
-            <p className="text-2xl md:text-3xl text-white/90 mb-12 font-light">
+            <p className="text-xl text-gray-300 mb-12">
               Скидка 500₽ за подписку. Пишем про сникер-культуру
             </p>
 
             {!isSubmitted ? (
               <form onSubmit={handleNewsletterSubmit} className="max-w-md mx-auto">
-                <div className="glass-card p-8">
+                <div className="nothing-form-container">
                   <input
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Ваш email для получения скидки"
-                    className="w-full px-6 py-4 bg-white/10 backdrop-blur-lg border border-white/30 rounded-xl text-white placeholder-white/60 text-lg focus:outline-none focus:border-white/60 mb-6"
+                    className="nothing-input mb-6"
                     required
                   />
                   <button 
                     type="submit"
-                    className="w-full bg-white text-violet-600 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-100 transition-colors duration-300"
+                    className="nothing-button-primary w-full"
                   >
                     Получить скидку 500₽
                   </button>
@@ -572,10 +556,10 @@ function App() {
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="glass-card p-8 max-w-md mx-auto"
+                className="nothing-success-message"
               >
-                <CheckCircle className="w-12 h-12 text-green-400 mx-auto mb-4" />
-                <p className="text-white text-lg">
+                <CheckCircle className="w-8 h-8 text-teal-400 mx-auto mb-4" />
+                <p className="text-white">
                   Спасибо! Скоро пришлем ссылку на Telegram-канал со скидкой 500₽
                 </p>
               </motion.div>
@@ -584,42 +568,41 @@ function App() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-black text-white py-16 border-t border-gray-800">
-        <div className="max-w-7xl mx-auto px-4">
+      {/* Footer - Nothing Minimal */}
+      <footer className="bg-gray-900 text-white py-16">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="col-span-2">
-              <h3 className="text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-indigo-400">
+              <h3 className="text-2xl font-bold mb-4 text-teal-400">
                 KICKORIGIN
               </h3>
-              <p className="text-gray-400 mb-6 text-lg leading-relaxed">
+              <p className="text-gray-400 text-lg leading-relaxed">
                 50 главных кроссовок планеты.<br />
-                Проверено. Задокументировано.<br />
-                Дальше можно не искать.
+                Проверено. Задокументировано.
               </p>
             </div>
             
             <div>
-              <h4 className="font-semibold mb-4 text-lg">Информация</h4>
+              <h4 className="font-semibold mb-4">Навигация</h4>
               <div className="space-y-2">
-                <a href="#" className="block text-gray-400 hover:text-white transition-colors">О проекте</a>
-                <a href="#" className="block text-gray-400 hover:text-white transition-colors">Доставка</a>
-                <a href="#" className="block text-gray-400 hover:text-white transition-colors">Гарантии</a>
+                <a href="#" className="block text-gray-400 hover:text-teal-400 transition-colors">Каталог</a>
+                <a href="#" className="block text-gray-400 hover:text-teal-400 transition-colors">FAQ</a>
+                <a href="#" className="block text-gray-400 hover:text-teal-400 transition-colors">Контакты</a>
               </div>
             </div>
             
             <div>
-              <h4 className="font-semibold mb-4 text-lg">Контакты</h4>
+              <h4 className="font-semibold mb-4">Поддержка</h4>
               <div className="space-y-2">
-                <a href="#" className="block text-gray-400 hover:text-white transition-colors">Telegram</a>
-                <a href="#" className="block text-gray-400 hover:text-white transition-colors">Email</a>
-                <a href="#" className="block text-gray-400 hover:text-white transition-colors">FAQ</a>
+                <a href="#" className="block text-gray-400 hover:text-teal-400 transition-colors">Доставка</a>
+                <a href="#" className="block text-gray-400 hover:text-teal-400 transition-colors">Гарантии</a>
+                <a href="#" className="block text-gray-400 hover:text-teal-400 transition-colors">Возврат</a>
               </div>
             </div>
           </div>
           
-          <div className="border-t border-gray-800 mt-12 pt-8 text-center">
-            <p className="text-gray-500">
+          <div className="border-t border-gray-700 mt-12 pt-8 text-center">
+            <p className="text-gray-500 text-sm">
               © 2024 KICKORIGIN. Все права защищены.
             </p>
           </div>
