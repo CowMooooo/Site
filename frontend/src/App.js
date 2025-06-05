@@ -235,9 +235,9 @@ function App() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.2, delay: 0.3 }}
             >
-              <span className="title-line">50 ГЛАВНЫХ</span>
-              <span className="title-highlight">КРОССОВОК</span>
-              <span className="title-line">ПЛАНЕТЫ</span>
+              <span className="title-line">50</span>
+              <span className="title-highlight">ГЛАВНЫХ</span>
+              <span className="title-line">КРОССОВОК<br />ПЛАНЕТЫ</span>
             </motion.h1>
             
             <motion.p 
