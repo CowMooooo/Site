@@ -289,7 +289,7 @@ html {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 80px;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .nothing-section-title {
@@ -306,46 +306,253 @@ html {
   color: var(--nothing-orange);
 }
 
-.emotional-text {
-  space-y: 24px;
+/* Enhanced storytelling styles */
+.emotional-subtitle {
+  margin-bottom: 40px;
 }
 
-.text-block {
+.subtitle-text {
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--nothing-gray-8);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
+
+.text-emphasis {
+  color: var(--nothing-red);
+  font-weight: 600;
+  position: relative;
+}
+
+.text-emphasis::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--nothing-red), transparent);
+  opacity: 0.3;
+}
+
+.emotional-story {
+  space-y: 32px;
+}
+
+.story-block {
+  margin-bottom: 32px;
+  padding: 24px 0;
+  border-left: 3px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.story-block:hover {
+  border-left-color: var(--nothing-red);
+  padding-left: 16px;
+}
+
+.story-text {
   font-size: 18px;
   font-weight: 400;
   color: var(--nothing-gray-7);
-  line-height: 1.6;
-  margin-bottom: 24px;
+  line-height: 1.7;
   letter-spacing: 0.01em;
 }
 
-.nothing-quote {
+.text-highlight {
+  background: linear-gradient(120deg, var(--nothing-red) 0%, var(--nothing-orange) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 600;
+}
+
+.text-frustration {
+  color: var(--nothing-gray-8);
+  font-weight: 600;
+  font-style: italic;
   position: relative;
-  background: var(--nothing-white);
-  border: 1px solid var(--nothing-gray-3);
-  border-radius: 12px;
+}
+
+/* Pain points styling */
+.pain-points {
+  margin: 48px 0;
   padding: 32px;
-  margin-top: 40px;
+  background: var(--nothing-white);
+  border-radius: 16px;
+  border: 1px solid var(--nothing-gray-2);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
-.quote-glyph {
-  position: absolute;
-  top: -8px;
-  left: 24px;
-  width: 16px;
-  height: 16px;
-  background: var(--nothing-red);
-  border-radius: 50%;
-  box-shadow: 0 0 16px var(--glyph-glow);
+.pain-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--nothing-black);
+  margin-bottom: 24px;
+  letter-spacing: -0.01em;
 }
 
-.quote-text {
+.pain-list {
+  space-y: 16px;
+}
+
+.pain-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--nothing-gray-2);
+  transition: all 0.3s ease;
+}
+
+.pain-item:last-child {
+  border-bottom: none;
+}
+
+.pain-item:hover {
+  background: var(--nothing-gray-1);
+  margin: 0 -16px;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.pain-bullet {
+  width: 8px;
+  height: 8px;
+  background: var(--nothing-red);
+  border-radius: 50%;
+  margin-top: 8px;
+  flex-shrink: 0;
+  box-shadow: 0 0 8px var(--glyph-glow);
+}
+
+.pain-text {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--nothing-gray-7);
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+}
+
+/* Solution moment styling */
+.solution-moment {
+  margin: 56px 0;
+  text-align: center;
+}
+
+.moment-highlight {
+  background: linear-gradient(135deg, var(--nothing-red) 0%, var(--nothing-orange) 100%);
+  border-radius: 20px;
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.moment-highlight::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(180deg); }
+}
+
+.moment-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--nothing-white);
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  position: relative;
+  z-index: 2;
+}
+
+.moment-accent {
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+/* Solution text styling */
+.solution-text {
+  margin: 40px 0;
+}
+
+.solution-description {
   font-size: 20px;
-  font-weight: 600;
-  color: var(--nothing-black);
-  line-height: 1.4;
+  font-weight: 400;
+  color: var(--nothing-gray-8);
+  line-height: 1.6;
   letter-spacing: -0.01em;
+}
+
+.solution-emphasis {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--nothing-black);
+}
+
+/* Final statement styling */
+.final-statement {
+  margin: 48px 0;
+}
+
+.statement-box {
+  background: linear-gradient(135deg, var(--nothing-gray-1) 0%, var(--nothing-white) 100%);
+  border: 2px solid var(--nothing-gray-2);
+  border-radius: 16px;
+  padding: 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+.statement-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--nothing-red), var(--nothing-orange), var(--nothing-red));
+}
+
+.statement-text {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--nothing-gray-8);
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+}
+
+.statement-highlight {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--nothing-black);
+}
+
+/* Section CTA styling */
+.section-cta {
+  margin-top: 48px;
+  text-align: left;
+}
+
+.section-cta .nothing-cta-button {
+  background: var(--nothing-black);
+  color: var(--nothing-white);
+  border: 2px solid var(--nothing-black);
+}
+
+.section-cta .nothing-cta-button:hover {
+  background: var(--nothing-red);
+  border-color: var(--nothing-red);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 59, 48, 0.3);
 }
 
 /* Visual Container - Light */
