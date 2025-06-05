@@ -60,23 +60,23 @@ const products = [
 const testimonials = [
   {
     id: 1,
-    name: "ALEXANDER K.",
+    name: "АЛЕКСАНДР К.",
     rating: 5,
-    text: "FINALLY FOUND A STORE WHERE I DON'T NEED TO DOUBT THE QUALITY. BOUGHT AIR FORCE 1 — EXACTLY AS SHOWN.",
+    text: "Наконец-то нашел магазин, где не нужно сомневаться в качестве. Купил Air Force 1 — приехали точно такие, как на фото.",
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face"
   },
   {
     id: 2,
-    name: "MARIA S.",
+    name: "МАРИЯ С.",
     rating: 5,
-    text: "CURATED APPROACH IS EXACTLY WHAT'S NEEDED. NO NEED TO SCROLL THROUGH THOUSANDS OF MODELS.",
+    text: "Кураторский подход — это именно то, что нужно. Не надо листать тысячи моделей, здесь только лучшее.",
     avatar: "https://images.unsplash.com/photo-1494790108755-2616b96c2a9d?w=100&h=100&fit=crop&crop=face"
   },
   {
     id: 3,
-    name: "DMITRY L.",
+    name: "ДМИТРИЙ Л.", 
     rating: 5,
-    text: "ORDER ARRIVED IN 12 DAYS. PERFECT PACKAGING, SIZE FIT EXACTLY. TOP QUALITY.",
+    text: "Заказ пришел через 12 дней. Упаковка идеальная, размер подошел точно. Качество на высоте.",
     avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face"
   }
 ];
