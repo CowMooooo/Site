@@ -111,6 +111,7 @@ html {
   align-items: center;
   overflow: hidden;
   background: var(--nothing-white);
+  padding-top: 80px;
 }
 
 .hero-background {
