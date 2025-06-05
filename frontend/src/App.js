@@ -85,32 +85,32 @@ const testimonials = [
 const processSteps = [
   {
     id: "01",
-    title: "AUTHENTICITY\nGUARANTEED",
-    description: "MULTI-LEVEL VERIFICATION ON POIZON PLATFORM. NO FAKES POSSIBLE.",
+    title: "ПОДЛИННОСТЬ\nГАРАНТИРОВАНА",
+    description: "КАЖДАЯ ПАРА ПРОХОДИТ МНОГОУРОВНЕВУЮ ПРОВЕРКУ НА POIZON — ПЛОЩАДКЕ, ГДЕ ПОДДЕЛКИ НЕВОЗМОЖНЫ В ПРИНЦИПЕ.",
     glyphColor: "#FF3B30"
   },
   {
     id: "02", 
-    title: "FAST SHIPPING\nFROM ASIA",
-    description: "ORDER SHIPS WITHIN 24 HOURS. NO DELAYS OR UNCLEAR STATUSES.",
+    title: "БЫСТРАЯ ДОСТАВКА\nИЗ АЗИИ",
+    description: "ПОСЛЕ ОПЛАТЫ ТВОЙ ЗАКАЗ ОТПРАВЛЯЕТСЯ В ТЕЧЕНИЕ 24 ЧАСОВ. БЕЗ ЗАДЕРЖЕК И НЕПОНЯТНЫХ СТАТУСОВ.",
     glyphColor: "#FF9500"
   },
   {
     id: "03",
-    title: "10-20 DAYS\nIN TRANSIT",
-    description: "CLEAR TIMEFRAMES WITHOUT EMPTY PROMISES. ALWAYS KNOW WHEN TO EXPECT.",
+    title: "10-20 ДНЕЙ\nВ ПУТИ",
+    description: "ЧЁТКИЕ СРОКИ БЕЗ ПУСТЫХ ОБЕЩАНИЙ. ТЫ ВСЕГДА ЗНАЕШЬ, КОГДА ПОЛУЧИШЬ СВОИ КРОССОВКИ.",
     glyphColor: "#FFCC02"
   },
   {
     id: "04",
-    title: "TRACK EVERY\nSTEP",
-    description: "REAL-TIME DELIVERY CONTROL. SEE EVERY MOVEMENT FROM ASIA TO YOUR CITY.",
+    title: "ОТСЛЕЖИВАНИЕ\nКАЖДОГО ШАГА",
+    description: "ПОЛНЫЙ КОНТРОЛЬ НАД ДОСТАВКОЙ В РЕЖИМЕ РЕАЛЬНОГО ВРЕМЕНИ. ОТ СКЛАДА В АЗИИ ДО ТВОЕГО ГОРОДА.",
     glyphColor: "#34C759"
   },
   {
     id: "05",
-    title: "PICKUP AT\nSDEK",
-    description: "COLLECT AT NEAREST SDEK OFFICE. 3000+ PICKUP POINTS ACROSS RUSSIA.",
+    title: "ПОЛУЧЕНИЕ\nВ СДЭК",
+    description: "ЗАБЕРИ СВОЙ ЗАКАЗ В БЛИЖАЙШЕМ ОТДЕЛЕНИИ СДЭК. БОЛЕЕ 3000 ПУНКТОВ ВЫДАЧИ ПО ВСЕЙ РОССИИ.",
     glyphColor: "#007AFF"
   }
 ];
