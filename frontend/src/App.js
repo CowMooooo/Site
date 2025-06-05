@@ -283,23 +283,141 @@ function App() {
                 КТО <span className="title-highlight">РАЗБИРАЕТСЯ</span>
               </h2>
               
-              <div className="emotional-text">
-                <p className="text-block">
-                  ТЫ ЛИСТАЕШЬ СОТНИ ПРЕДЛОЖЕНИЙ И ЗНАЕШЬ: ГДЕ-ТО ЗДЕСЬ ТВОЯ ИДЕАЛЬНАЯ ПАРА. 
-                  НО КАЖДЫЙ РАЗ ОДИН И ТОТ ЖЕ ВОПРОС — ДЕЙСТВИТЕЛЬНО ЛИ ЭТО ОРИГИНАЛ?
+              <motion.div 
+                className="emotional-subtitle"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: true }}
+              >
+                <p className="subtitle-text">
+                  Ты листаешь сотни предложений и знаешь: где-то здесь твоя идеальная пара. 
+                  Но каждый раз один и тот же вопрос — <span className="text-emphasis">действительно ли это оригинал? 
+                  И почему такая цена?</span>
                 </p>
-                
-                <p className="text-block">
-                  ТЫ ЦЕНИШЬ ПОДЛИННЫЕ ВЕЩИ. НЕ ПОТОМУ ЧТО ЭТО МОДНО — ПРОСТО ПО-ДРУГОМУ НЕ УМЕЕШЬ.
-                </p>
-                
-                <div className="nothing-quote">
-                  <div className="quote-glyph"></div>
-                  <p className="quote-text">
-                    И ВОТ ЗДЕСЬ, В МОМЕНТ ВЫБОРА,<br />
-                    МЫ ДЕЛАЕМ ВСЁ ПО-ДРУГОМУ.
+              </motion.div>
+              
+              <div className="emotional-story">
+                <motion.div 
+                  className="story-block"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                  viewport={{ once: true }}
+                >
+                  <p className="story-text">
+                    Ты ценишь <span className="text-highlight">подлинные вещи</span>. 
+                    Не потому что это модно — просто по-другому не умеешь. 
+                    <span className="text-emphasis">Фейки вызывают физический дискомфорт</span>, 
+                    а переплачивать за чужой маркетинг — против твоих принципов.
                   </p>
-                </div>
+                </motion.div>
+
+                <motion.div 
+                  className="story-block"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.6 }}
+                  viewport={{ once: true }}
+                >
+                  <p className="story-text">
+                    Ты знаешь, чего хочешь. Но когда открываешь очередной маркетплейс... 
+                    <span className="text-frustration">Сотни моделей. Тысячи продавцов. Миллион вопросов без ответов.</span> 
+                    И каждый раз следопытом — проверять, перепроверять, сомневаться.
+                  </p>
+                </motion.div>
+
+                <motion.div 
+                  className="pain-points"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.8 }}
+                  viewport={{ once: true }}
+                >
+                  <h3 className="pain-title">Знакомо, когда:</h3>
+                  <div className="pain-list">
+                    {[
+                      "Нашел идеальную модель, но сомневаешься в подлинности",
+                      "Видишь явно завышенную цену и понимаешь, что платишь за чужую рекламу", 
+                      "Открываешь каталог и через 15 минут закрываешь — глаза разбегаются",
+                      "Чувствуешь себя одиноким в этом бесконечном поиске"
+                    ].map((pain, index) => (
+                      <motion.div
+                        key={index}
+                        className="pain-item"
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.6, delay: 1 + index * 0.1 }}
+                        viewport={{ once: true }}
+                      >
+                        <div className="pain-bullet"></div>
+                        <span className="pain-text">{pain}</span>
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
+
+                <motion.div 
+                  className="solution-moment"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.8, delay: 1.5 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="moment-highlight">
+                    <h3 className="moment-title">
+                      И вот здесь, в момент выбора,<br />
+                      <span className="moment-accent">мы делаем всё по-другому.</span>
+                    </h3>
+                  </div>
+                </motion.div>
+
+                <motion.div 
+                  className="solution-text"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 1.7 }}
+                  viewport={{ once: true }}
+                >
+                  <p className="solution-description">
+                    <span className="solution-emphasis">Хватит мучиться от бесконечного выбора.</span> 
+                    Мы отбираем только те модели, которые действительно стоит носить. 
+                    Никаких лишних вариантов, только <span className="text-highlight">кураторский подход</span>, 
+                    который делает твой выбор лёгким и уверенным.
+                  </p>
+                </motion.div>
+
+                <motion.div 
+                  className="final-statement"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 1.9 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="statement-box">
+                    <p className="statement-text">
+                      <span className="statement-highlight">Мы такие же, как ты.</span> 
+                      Мы создали то, чего сами не могли найти — место, где не нужно выбирать 
+                      между оригинальностью и разумной ценой. Где каждая модель прошла отбор, 
+                      и ты точно знаешь, за что платишь.
+                    </p>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  className="section-cta"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 2.1 }}
+                  viewport={{ once: true }}
+                >
+                  <button className="nothing-cta-button">
+                    <span>ПОКАЗАТЬ КОЛЛЕКЦИЮ</span>
+                    <div className="button-glyph">
+                      <ArrowRight className="w-5 h-5" />
+                    </div>
+                  </button>
+                </motion.div>
               </div>
             </motion.div>
             
@@ -307,7 +425,7 @@ function App() {
               className="emotional-visual"
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
               viewport={{ once: true }}
             >
               <div className="visual-container">
